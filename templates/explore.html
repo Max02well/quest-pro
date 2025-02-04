@@ -368,10 +368,10 @@
                         </select>
                         <select class="filter-select">
                             <option value="">Salary Range</option>
-                            <option>$0 - $50k</option>
-                            <option>$50k - $100k</option>
-                            <option>$100k - $150k</option>
-                            <option>$150k+</option>
+                            <option>Ksh.0 - 50k</option>
+                            <option>Ksh.50k - 100k</option>
+                            <option>Ksh.100k - 150k</option>
+                            <option>Ksh.150k+</option>
                         </select>
                     </div>
                 </div>
@@ -391,7 +391,7 @@
                     <div class="job-details">
                         <span class="job-detail"><i class="fas fa-map-marker-alt"></i> New York</span>
                         <span class="job-detail"><i class="fas fa-clock"></i> Full-time</span>
-                        <span class="job-detail"><i class="fas fa-dollar-sign"></i> $120k - $150k</span>
+                        <span class="job-detail"></i> Ksh.120k - 150k</span>
                     </div>
                     <p>Join our team to build innovative solutions using cutting-edge technologies. We're looking for passionate engineers who love solving complex problems.</p>
                     <a href="#" class="btn">Apply Now</a>
@@ -408,7 +408,7 @@
                     <div class="job-details">
                         <span class="job-detail"><i class="fas fa-map-marker-alt"></i> Remote</span>
                         <span class="job-detail"><i class="fas fa-clock"></i> Full-time</span>
-                        <span class="job-detail"><i class="fas fa-dollar-sign"></i> $100k - $130k</span>
+                        <span class="job-detail"></i> Ksh.100k - 130k</span>
                     </div>
                     <p>Lead product development and strategy for our flagship SaaS platform. Shape the future of how businesses operate in the digital age.</p>
                     <a href="#" class="btn">Apply Now</a>
@@ -425,7 +425,7 @@
                     <div class="job-details">
                         <span class="job-detail"><i class="fas fa-map-marker-alt"></i> London</span>
                         <span class="job-detail"><i class="fas fa-clock"></i> Contract</span>
-                        <span class="job-detail"><i class="fas fa-dollar-sign"></i> $80k - $100k</span>
+                        <span class="job-detail"></i> Ksh.80k - 100k</span>
                     </div>
                     <p>Create beautiful and intuitive interfaces that delight users. Work with a talented team of designers and developers to build amazing experiences.</p>
                     <a href="#" class="btn">Apply Now</a>
@@ -455,7 +455,12 @@
                     <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                 </div>
-                <p class="copyright">&copy; 2025 Quest-Pro. All rights reserved.</p>
+              <div class="container">
+                <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+                      <script>
+                 document.getElementById("copyright-year").textContent = new Date().getFullYear();
+                      </script>
+                  </div>
             </div>
         </footer>
 </div> 

@@ -5,152 +5,289 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuestPro</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #164773;
-            --primary-light: #1e5c94;
-            --text-light: #ffffff;
-            --text-dark: #333333;
-            --spacing-base: 1rem;
-        }
+      <style>
+            :root {
+                --primary-color: #164773;
+                --primary-light: #1e5c94;
+                --primary-dark: #0d2b47;
+                --secondary-color: #4B4952;
+                --accent-color: #2ecc71;
+                --text-light: #ffffff;
+                --text-dark: #333333;
+                --spacing-base: 1rem;
+                --transition: all 0.3s ease;
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: #f5f5f5;
-        }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.6;
+                background-color: #f8f9fa;
+            }
 
-        header {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-md);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        .logo{
-          color: var(--text-light);
-          font-size: 1.5rem;
-          font-weight: bold;
-          text-decoration: none;
-        }
-
-        .navbar {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .navbar a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            background-color: var(--primary-light);
-        }
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        #body {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-base);
-        }
-
-        .hero {
-            position: relative;
-            margin: 1rem 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        #banner {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--text-light);
-            width: 90%;
-        }
-
-        .hero-text h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-
-        .hero-text p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-light);
-        }
-
-        section {
-            margin: 4rem 0;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        footer {
+            /* Enhanced Header Styles */
+            header {
                 background-color: var(--primary-color);
                 color: var(--text-light);
-                padding: 3rem 0;
-                margin-top: auto;
+                padding: 1rem 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                box-shadow: var(--shadow-md);
+                transition: var(--transition);
+            }
+
+            header.scrolled {
+                padding: 0.5rem 0;
+                background-color: rgba(22, 71, 115, 0.95);
+                backdrop-filter: blur(10px);
+            }
+
+            .header-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                color: var(--text-light);
+                font-size: 1.75rem;
+                font-weight: 700;
+                text-decoration: none;
+                letter-spacing: -0.5px;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .logo i {
+                color: var(--accent-color);
+            }
+
+            /* Enhanced Navigation */
+            .navbar {
+                display: flex;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .nav-item {
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                transition: var(--transition);
+                font-size: 1rem;
+                position: relative;
+            }
+
+            .nav-item:hover {
+                background-color: var(--primary-light);
+                transform: translateY(-1px);
+            }
+
+            .nav-item.active {
+                background-color: var(--accent-color);
+            }
+
+            /* Enhanced Hero Section */
+            .hero {
+                position: relative;
+                margin-top: 4rem;
+                height: calc(100vh - 4rem);
+                min-height: 600px;
+                background-color: var(--primary-dark);
+                overflow: hidden;
+            }
+
+            .video-container {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
+            .video-container::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+            }
+
+            .video-container video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .hero-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: var(--text-light);
+                width: 90%;
+                max-width: 800px;
+                z-index: 2;
+            }
+
+            .hero-text h2 {
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.2;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .hero-text p {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+                opacity: 0.9;
+            }
+
+            /* Enhanced Button Styles */
+            .btn {
+                display: inline-block;
+                padding: 1rem 2.5rem;
+                background-color: var(--accent-color);
+                color: var(--text-light);
+                text-decoration: none;
+                border-radius: 50px;
+                transition: var(--transition);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: var(--shadow-md);
+            }
+
+            .btn:hover {
+                background-color: #27ae60;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            /* Enhanced Features Grid */
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin: 4rem auto;
+                max-width: 1200px;
+                padding: 0 2rem;
+            }
+
+            .feature-card {
+                background: white;
+                padding: 2.5rem;
+                border-radius: 12px;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow-sm);
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+                color: var(--accent-color);
+                margin-bottom: 1.5rem;
+                background: #f8f9fa;
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+                border-radius: 50%;
+                margin: 0 auto 1.5rem;
+            }
+
+            /* Enhanced Job Categories */
+            .jobs-section {
+                background: white;
+                padding: 4rem 2rem;
+                margin: 4rem auto;
+                max-width: 1200px;
+            }
+
+            .jobs-section h2 {
+                text-align: center;
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+                color: var(--primary-color);
+            }
+
+            .job-categories {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+
+            .category-card {
+                background: var(--primary-color);
+                padding: 2.5rem;
+                color: var(--text-light);
+                border-radius: 12px;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow-md);
+                cursor: pointer;
+            }
+
+            .category-card:hover {
+                background: var(--accent-color);
+                transform: translateY(-5px);
+            }
+
+            /* Enhanced Stats Section */
+            .stats-section {
+                background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+                color: var(--text-light);
+                padding: 6rem 2rem;
+                margin: 4rem 0;
+            }
+
+            .stats-grid {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .stat-item h3 {
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+                color: var(--accent-color);
+            }
+
+            /* Enhanced Footer */
+            footer {
+                background-color: var(--primary-dark);
+                color: var(--text-light);
+                padding: 4rem 0 2rem;
             }
 
             .footer-content {
@@ -165,6 +302,7 @@
             .footer-section h3 {
                 margin-bottom: 1.5rem;
                 font-size: 1.2rem;
+                color: var(--accent-color);
             }
 
             .footer-links {
@@ -178,88 +316,180 @@
             .footer-links a {
                 color: var(--text-light);
                 text-decoration: none;
-                transition: opacity 0.3s ease;
+                transition: var(--transition);
+                opacity: 0.8;
             }
 
             .footer-links a:hover {
-                opacity: 0.8;
+                opacity: 1;
+                color: var(--accent-color);
             }
 
             .social-links {
                 display: flex;
                 gap: 1.5rem;
+                justify-content: center;
                 margin-top: 1.5rem;
             }
 
             .social-links a {
                 color: var(--text-light);
                 font-size: 1.5rem;
-                transition: opacity 0.3s ease;
+                transition: var(--transition);
+                opacity: 0.8;
             }
 
             .social-links a:hover {
+                opacity: 1;
+                color: var(--accent-color);
+                transform: translateY(-2px);
+            }
+
+            .footer-bottom {
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 2rem;
+                margin-top: 3rem;
+                text-align: center;
                 opacity: 0.8;
             }
-          .footer-bottom {
-              border-top: 1px solid rgba(255, 255, 255, 0.1);
-              padding-top: 2rem;
-              margin-top: 2rem;
-              text-align: center;
-          }
 
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
+            /* Enhanced Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .hero-text h2 {
+                    font-size: 2.5rem;
+                }
 
-            .hero-text h2 {
-                font-size: 2rem;
-            }
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
 
-            .footer-content ul {
-                flex-direction: column;
-                gap: 1rem;
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .navbar {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background-color: var(--primary-color);
+                    padding: 1rem;
+                    flex-direction: column;
+                }
+
+                .navbar.active {
+                    display: flex;
+                }
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .nav-item {
+                    width: 100%;
+                    text-align: center;
+                }
             }
-        }
-    </style>
-</head>
+        </style>
+    </head>
 <body>
-    <div id="body">
+    <div>
         <header>
             <div class="header-content">
-
-                <a href="/" class="logo">QuestPro</a>         
-                <nav class="navbar">            
-                    <a href="/">Home</a>
-                    <a href="/explore">Explore</a>
-                    <a href="/about">About</a>
-                    <a href="/contact">Contact</a>               
+                <div class="logo-container">
+                    <a href="/" class="logo">
+                        <i class="fas fa-cube"></i>
+                        QuestPro
+                    </a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="navbar">
+                    <a href="/" class="nav-item active">Home</a>
+                    <a href="/explore" class="nav-item">Explore</a>
+                    <a href="/about" class="nav-item">About</a>
+                    <a href="/contact" class="nav-item">Contact</a>
                 </nav>
             </div>
         </header>
 
         <section class="hero">
-            <img id="banner" src="https://images.unsplash.com/photo-1482440308425-276ad0f28b19?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Career opportunities">
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source src="https://www.shutterstock.com/shutterstock/videos/1094501503/preview/stock-footage-change-career-and-job-search-on-laptop-by-corporate-employee-working-in-office-looking-for-a-new.webm" type="video/mp4">
+                </video>
+            </div>
             <div class="hero-text">
-                <h2>Find Your Dream Career with QuestPro</h2>
-                <p>Your personalized career journey starts here.</p>
-                <a href="/explore" class="btn">Explore Jobs</a>
+                <h2>Your Career Journey Starts Here</h2>
+                <p>Connect with top employers and find your dream job</p>
+                <a href="/explore" class="btn">Explore Opportunities</a>
             </div>
         </section>
 
-        <section>
-            <h2>About Us</h2>
-            <p>QuestPro is a leading career platform that connects ambitious individuals with exciting opportunities. We are committed to providing a personalized and seamless experience for job seekers and employers alike. Our advanced technology and dedicated team ensure that you find the perfect match for your career aspirations.</p>
+        <section class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-search feature-icon"></i>
+                <h3>Smart Job Matching</h3>
+                <p>Our AI-powered platform matches you with the perfect opportunities based on your skills and preferences.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-briefcase feature-icon"></i>
+                <h3>Career Growth</h3>
+                <p>Access resources and tools to develop your skills and advance your career journey.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-handshake feature-icon"></i>
+                <h3>Direct Connections</h3>
+                <p>Connect directly with hiring managers and recruiters from top companies.</p>
+            </div>
         </section>
 
-        <section>
-            <h2>Job Openings</h2>
-            <p>Explore the job openings here</p>
-            
+        <section class="jobs-section">
+            <h2>Explore Career Categories</h2>
+            <div class="job-categories">
+                <div class="category-card">
+                    <h3>Technology</h3>
+                    <p>1,234 Jobs Available</p>
+                </div>
+                <div class="category-card">
+                    <h3>Finance</h3>
+                    <p>867 Jobs Available</p>
+                </div>
+                <div class="category-card">
+                    <h3>Marketing</h3>
+                    <p>645 Jobs Available</p>
+                </div>
+                <div class="category-card">
+                    <h3>Healthcare</h3>
+                    <p>789 Jobs Available</p>
+                </div>
+            </div>
+        </section>
 
-            
+        <section class="stats-section">
+            <div  class="stats-grid">
+                <div class="stat-item">
+                    <h3>10K+</h3>
+                    <p>Active Jobs</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5K+</h3>
+                    <p>Companies</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1M+</h3>
+                    <p>Job Seekers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Success Rate</p>
+                </div>
+            </div>
         </section>
 
         <footer>
@@ -268,51 +498,71 @@
                     <h3>About QuestPro</h3>
                     <ul class="footer-links">
                         <li><a href="/about">About Us</a></li>
-                         <li><a href="/blog">Blog</a></li>
+                        <li><a href="/blog">Blog</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                      <h3>Connect With Us</h3>
-                                  <ul class="footer-links">
-                                      <li><a href="/contact">Contact Us</a></li>
-                                      <li><a href="/support">Support</a></li>
-                                      <li><a href="/feedback">Feedback</a></li>
-                                  </ul>
-                                  <div class="social-links">
-                                      <a href="#" target="_blank" rel="noopener noreferrer">
-                                          <i class="fab fa-linkedin"></i>
-                                      </a>
-                                      <a href="#" target="_blank" rel="noopener noreferrer">
-                                          <i class="fab fa-twitter"></i>
-                                      </a>
-                                      <a href="#" target="_blank" rel="noopener noreferrer">
-                                          <i class="fab fa-facebook"></i>
-                                      </a>
-                                      <a href="#" target="_blank" rel="noopener noreferrer">
-                                          <i class="fab fa-instagram"></i>
-                                      </a>
-                                  </div>
-                              </div>
-                              <div class="footer-section">
-                                  <h3>Legal</h3>
-                                  <ul class="footer-links">
-                                      <li><a href="/privacy">Privacy Policy</a></li>
-                                      <li><a href="/terms">Terms of Service</a></li>
-                                      <li><a href="/accessibility">Accessibility</a></li>
-                                      <li><a href="/cookie-policy">Cookie Policy</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                          <div class="footer-bottom">
-                              <div class="container">
-                            <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-                                  <script>
-                             document.getElementById("copyright-year").textContent = new Date().getFullYear();
-                                  </script>
-                              </div>
-                          </div>
-                      </footer>
-    </div>
-</body>
-</html>
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/accessibility">Accessibility</a></li>
+                        <li><a href="/cookie-policy">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+                    </div>
+                            </div>
+                        </footer>
+                    </div>
+                    <script>
+                        // Enhanced scroll effect for header
+                        window.addEventListener('scroll', () => {
+                            const header = document.querySelector('header');
+                            if (window.scrollY > 50) {
+                                header.classList.add('scrolled');
+                            } else {
+                                header.classList.remove('scrolled');
+                            }
+                        });
+
+                        // Mobile menu toggle
+                        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                        const navbar = document.querySelector('.navbar');
+
+                        mobileMenuBtn.addEventListener('click', () => {
+                            navbar.classList.toggle('active');                            
+                        });
+
+                        // Copyright year
+                        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+                    </script>
+                    </body>
+                    </html>
+                

@@ -20,5 +20,13 @@ def contact():
 def explore():
   return render_template('explore.html')
 
+@app.route('/blog')
+def blog():
+  return render_template('blog.html')
+
+@app.route('/privacy')
+def privacy():
+  return render_template('privacy.html')
+
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)

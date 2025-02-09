@@ -11,8 +11,8 @@
                 --primary-light: #1e5c94;
                 --primary-dark: #0d2b47;
                 --secondary-color: #4B4952;
-                --accent-color: #2ecc71;
-                --text-light: #ffffff;
+                --accent-color: #2ecc71;   
+                --text-light: #ffffff;       
                 --text-dark: #333333;
                 --spacing-base: 1rem;
                 --transition: all 0.3s ease;
@@ -20,94 +20,81 @@
                 --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
                 --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             }
-
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
-
             body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
                 line-height: 1.6;
                 background-color: #f8f9fa;
             }
+          .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 15px;
+          }
+           
+          .header {
+              position: fixed;
+              width: 100%;
+              top: 0;
+              background-color: var(--primary-color);
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+              z-index: 1000;
+              transition: all 0.3s ease;
+          }
+          .nav {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 0;
+          }
+          .nav-brand {
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: #fff;
+              text-decoration: none;
+          }
+          .nav-menu {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+          }
+          .nav-link {
+              color: var(--text-light);
+              text-decoration: none;
+              font-weight: 500;
+              position: relative;
+              transition: color 0.3s ease;
+          }
 
-            /* Enhanced Header Styles */
-            header {
-                background-color: var(--primary-color);
-                color: var(--text-light);
-                padding: 1rem 0;
-                position: fixed;
-                width: 100%;
-                top: 0;
-                z-index: 1000;
-                box-shadow: var(--shadow-md);
-                transition: var(--transition);
-            }
+          .nav-link:hover, .nav-link.active {
+              color: var(--accent-color);
+          }
 
-            header.scrolled {
-                padding: 0.5rem 0;
-                background-color: rgba(22, 71, 115, 0.95);
-                backdrop-filter: blur(10px);
-            }
+          .nav-link.active::after {
+              content: '';
+              position: absolute;
+              bottom: -5px;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              background-color: var(--accent-color);
+          }
 
-            .header-content {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 2rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .logo-container {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .logo {
-                color: var(--text-light);
-                font-size: 1.75rem;
-                font-weight: 700;
-                text-decoration: none;
-                letter-spacing: -0.5px;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .logo i {
-                color: var(--accent-color);
-            }
-
-            /* Enhanced Navigation */
-            .navbar {
-                display: flex;
-                gap: 1.5rem;
-                align-items: center;
-            }
-
-            .nav-item {
-                color: var(--text-light);
-                text-decoration: none;
-                font-weight: 500;
-                padding: 0.5rem 1rem;
-                border-radius: 6px;
-                transition: var(--transition);
-                font-size: 1rem;
-                position: relative;
-            }
-
-            .nav-item:hover {
-                background-color: var(--primary-light);
-                transform: translateY(-1px);
-            }
-
-            .nav-item.active {
-                background-color: var(--accent-color);
-            }
+          .mobile-toggle {
+              display: none;
+              background: none;
+              border: none;
+              font-size: 1.5rem;
+              cursor: pointer;
+          }
+          .mobile-toggle .fa-times {
+              transform: rotate(180deg);
+              transition: var(--transition);
+          }
 
             /* Enhanced Hero Section */
             .hero {
@@ -282,6 +269,43 @@
                 margin-bottom: 0.5rem;
                 color: var(--accent-color);
             }
+                    /* Testimonials Section */
+          .testimonials {
+              padding: 4rem 0;
+              background-color: #f8f9fa;
+          }
+
+          .testimonials h2 {
+              text-align: center;
+              margin-bottom: 3rem;
+              font-size: 2.5rem;
+              color: var(--primary-color);
+          }
+
+          .testimonial-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 2rem;
+          }
+
+          .testimonial-card {
+              background: white;
+              padding: 2rem;
+              border-radius: 1rem;
+              box-shadow: var(--shadow-sm);
+              text-align: center;
+          }
+
+          .testimonial-card img {
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              margin: 0 auto 1rem;
+              object-fit: cover;
+          }
 
             /* Enhanced Footer */
             footer {
@@ -367,53 +391,55 @@
                     grid-template-columns: repeat(2, 1fr);
                 }
 
-                .mobile-menu-btn {
+                .mobile-toggle {
                     display: block;
                 }
 
-                .navbar {
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    right: 0;
-                    background-color: var(--primary-color);
-                    padding: 1rem;
-                    flex-direction: column;
-                }
-
-                .navbar.active {
-                    display: flex;
-                }
-                .mobile-menu-btn {
-                    display: block;
-                }
-
-                .nav-item {
+                .nav-menu {
+                    position: fixed;
+                    top: 0;
+                    left: -100%;
                     width: 100%;
-                    text-align: center;
+                    height: 100%;
+                    background: var(--primary-color);
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    transition: left 0.3s ease;
+                    z-index: 999;
+                }
+
+                .nav-menu.active {
+                    left: 0;
+                }
+
+                .nav-link {
+                    font-size: 1.5rem;
+                    margin: 15px 0;
+                }
+                .h2,h1{
+                    font-size: 1rem;
                 }
             }
         </style>
     </head>
 <body>
     <div>
-        <header>
-            <div class="header-content">
-                <div class="logo-container">
-                    <a href="/" class="logo">
-                        <i class="fas fa-cube"></i>
-                        QuestPro
-                    </a>
-                </div>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav class="navbar">
-                    <a href="/" class="nav-item active">Home</a>
-                    <a href="/explore" class="nav-item">Explore</a>
-                    <a href="/about" class="nav-item">About</a>
-                    <a href="/contact" class="nav-item">Contact</a>
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+
+                    <a href="/" class="nav-brand">
+                        <i class="fas fa-cube" style="color:#27ae60;""></i> QuestPro</a>
+                    <button class="mobile-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu">
+                        <a href="/" class="nav-link active">Home</a>
+                        <a href="/explore" class="nav-link">Explore</a>
+                        <a href="/about" class="nav-link">About</a>
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -491,6 +517,23 @@
                 </div>
             </div>
         </section>
+        <section class="testimonials">
+            <div class="test-container">
+                <h2>Success Stories</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card animate-fadein">
+                        <img src="https://media.istockphoto.com/id/2151279555/photo/business-woman-thinking-and-laptop-for-online-research-in-office-and-information-on-digital.webp?a=1&b=1&s=612x612&w=0&k=20&c=vdIzqNQ8zAaHIrMz1zHIAqQPGoXUBuRXjgPoNMmxD3Y=" alt="Sarah Johnson">
+                        <blockquote>"QuestPro helped me find my perfect job in just 2 weeks!"</blockquote>
+                        <p class="author">- Sarah Johnson, Marketing Manager</p>
+                    </div>
+                    <div class="testimonial-card animate-fadein">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyc29ufGVufDB8fDB8fHww" alt="Michael Chen">
+                        <blockquote>"The career resources helped me level up my skills dramatically."</blockquote>
+                        <p class="author">- Michael Chen, Software Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer>
             <div class="footer-content">
@@ -534,6 +577,7 @@
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <div class="container">
                     <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
@@ -542,7 +586,35 @@
                         </footer>
                     </div>
                     <script>
-                        // Enhanced scroll effect for header
+                        // Chatbase Integration
+                        (function(){
+                            if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+                                window.chatbase=(...arguments)=>{
+                                    if(!window.chatbase.q){window.chatbase.q=[]}
+                                    window.chatbase.q.push(arguments)
+                                };
+                                window.chatbase=new Proxy(window.chatbase,{
+                                    get(target,prop){
+                                        if(prop==="q"){return target.q}
+                                        return(...args)=>target(prop,...args)
+                                    }
+                                })
+                            }
+                            const onLoad=function(){
+                                const script=document.createElement("script");
+                                script.src="https://www.chatbase.co/embed.min.js";
+                                script.id="jf1k_UpKmxBLQPDPrYlz-";
+                                script.domain="www.chatbase.co";
+                                document.body.appendChild(script)
+                            };
+                            if(document.readyState==="complete"){
+                                onLoad()
+                            }else{
+                                window.addEventListener("load",onLoad)
+                            }
+                        })();
+
+                        // Scroll effect for header
                         window.addEventListener('scroll', () => {
                             const header = document.querySelector('header');
                             if (window.scrollY > 50) {
@@ -552,17 +624,54 @@
                             }
                         });
 
-                        // Mobile menu toggle
-                        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-                        const navbar = document.querySelector('.navbar');
+                        // Mobile menu functionality
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const mobileToggle = document.querySelector('.mobile-toggle');
+                            const navMenu = document.querySelector('.nav-menu');
+                            const menuIcon = mobileToggle.querySelector('i');
+                            const navLinks = document.querySelectorAll('.nav-link');
 
-                        mobileMenuBtn.addEventListener('click', () => {
-                            navbar.classList.toggle('active');                            
+                            // Toggle mobile menu
+                            mobileToggle.addEventListener('click', () => {
+                                navMenu.classList.toggle('active');
+                                const isExpanded = navMenu.classList.contains('active');
+
+                                menuIcon.classList.toggle('fa-bars', !isExpanded);
+                                menuIcon.classList.toggle('fa-times', isExpanded);
+                                mobileToggle.setAttribute('aria-expanded', isExpanded);
+                                document.body.style.overflow = isExpanded ? 'hidden' : 'auto';
+                            });
+
+                            // Close menu when clicking outside
+                            document.addEventListener('click', (e) => {
+                                if (window.innerWidth <= 768 && 
+                                    !e.target.closest('.nav') && 
+                                    navMenu.classList.contains('active')) {
+
+                                    navMenu.classList.remove('active');
+                                    menuIcon.classList.remove('fa-times');
+                                    menuIcon.classList.add('fa-bars');
+                                    mobileToggle.setAttribute('aria-expanded', 'false');
+                                    document.body.style.overflow = 'auto';
+                                }
+                            });
+
+                            // Handle nav link clicks
+                            navLinks.forEach(link => {
+                                link.addEventListener('click', () => {
+                                    navMenu.classList.remove('active');
+                                    document.body.style.overflow = 'auto';
+                                    menuIcon.classList.remove('fa-times');
+                                    menuIcon.classList.add('fa-bars');
+                                });
+                            });
                         });
 
-                        // Copyright year
+                        // Set copyright year
                         document.getElementById("copyright-year").textContent = new Date().getFullYear();
-                    </script>
+                        
+                        
+                        </script>
                     </body>
                     </html>
                 

@@ -3,258 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Jobs - QuestPro</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Privacy Policy - QuestPro</title>
     <style>
         :root {
-            --primary-color: #164773;
-            --primary-light: #1e5c94;
-            --primary-dark: #0d2b47;
-            --secondary-color: #4B4952;
-            --accent-color: #2ecc71;   
-            --text-light: #ffffff;       
-            --text-dark: #333333;
-            --spacing-base: 1rem;
-            --transition: all 0.3s ease;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        --primary-color: #164773;
+        --primary-light: #1e5c94;
+        --primary-dark: #0d2b47;
+        --secondary-color: #4B4952;
+        --accent-color: #2ecc71;
+        --text-light: #ffffff;
+        --text-dark: #333333;
+          --spacing-base: 1rem;
+          --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+          --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+      header {
+          background-color: var(--primary-color);
+          color: var(--text-light);
+          padding: 1.6rem 0;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: var(--shadow-md);
+      }
+
+      .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 2rem;
+      }
+      .logo{
+        color: var(--text-light);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .navbar {
+          display: flex;
+          gap: 2rem;
+      }
+
+      .navbar a {
+          color: var(--text-light);
+          text-decoration: none;
+          font-weight: 500;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          transition: background-color 0.3s ease;
+      }
+
+      .navbar a:hover {
+          background-color: var(--primary-light);
+      }
+
+        h1, h2, h3 {
+            color: #003366; /* Blue brand color */
+        }
+        .header {
+            background-color: #fff;
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        .content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+        }
+        p {
             line-height: 1.6;
-            background-color: #f8f9fa;
-            color: var(--text-dark);
-            padding-top: 80px;
+            color: #333;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 20px;
         }
 
-        /* Header Styles */
-        .header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background-color: var(--primary-color);
-            box-shadow: var(--shadow-sm);
-            z-index: 1000;
-            transition: var(--transition);
-        }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-brand i {
-            color: var(--accent-color);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-link:hover, 
-        .nav-link.active {
-            color: var(--accent-color);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        /* Search Section */
-        .search-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            padding: 4rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .search-bar {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .search-inputs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .filter-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        /* Job Listings */
-        .job-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .job-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .job-title {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .company-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .company-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-        }
-
-        .job-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        .job-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--accent-color);
-            color: var(--text-light);
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 3rem 0;
-        }
-
-        .page-btn {
-            padding: 0.75rem 1.25rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 50px;
-            color: var(--primary-color);
-            background: white;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .page-btn.active,
-        .page-btn:hover {
+      footer {
             background-color: var(--primary-color);
             color: var(--text-light);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            padding: 4rem 0;
+            padding: 3rem 0;
             margin-top: 4rem;
         }
 
@@ -264,241 +119,158 @@
             text-align: center;
         }
 
-        .footer-links {
+        .footer-content ul {
             list-style: none;
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin-bottom: 2rem;
-            padding: 0;
         }
 
-        .footer-links a {
+        .footer-content a {
             color: var(--text-light);
             text-decoration: none;
-            transition: var(--transition);
+            transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--accent-color);
+        .footer-content a:hover {
+            color: #ccc;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+      .social-links {
+          margin: 1.5rem 0;
+      }
         .social-links a {
+            font-size: 1.2rem;
+            margin: 0 1rem;
             color: var(--text-light);
-            font-size: 1.5rem;
-            transition: var(--transition);
+        }
+        /* Accordion Styling */
+      .accordion {
+            background-color: #f1f1f1;
+            color: #003366;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            margin-top: 10px;
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
+        .active, .accordion:hover {
+            background-color: #003366;
+            color: white;
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--primary-color);
-                flex-direction: column;
-                padding: 2rem;
-                transition: var(--transition);
-                z-index: 999;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                padding: 1rem;
-            }
-
-            .search-inputs {
-                grid-template-columns: 1fr;
-            }
-
-            .job-grid {
-                grid-template-columns: 1fr;
-            }
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #f9f9f9;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="/" class="nav-brand">
-                    <i class="fas fa-cube"></i> QuestPro
-                </a>
-                <button class="mobile-toggle" aria-label="Toggle Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="nav-menu">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/explore" class="nav-link active">Explore</a>
-                    <a href="/about" class="nav-link">About</a>
-                    <a href="/contact" class="nav-link">Contact</a>
-                </div>
-            </nav>
+  <header>
+      <div class="header-content">
+
+          <a href="/" class="logo">QuestPro</a>         
+          <nav class="navbar">            
+              <a href="/">Home</a>
+              <a href="/explore">Explore</a>
+              <a href="/about">About</a>
+              <a href="/contact">Contact</a>               
+          </nav>
+      </div>
+  </header>
+
+    <div class="header">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is important to us</p>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h2>Introduction</h2>
+            <p>At QuestPro, we value your privacy and are committed to protecting your personal information. This privacy policy outlines the types of data we collect, how we use it, and how we protect your privacy while you use our job search platform.</p>
+            
+            <button class="accordion">1. Information We Collect</button>
+            <div class="panel">
+                <p>We collect personal information when you register, apply for jobs, or communicate with our support team. This includes your name, email address, resume, job preferences, and any other details you choose to provide.</p>
+            </div>
+
+            <button class="accordion">2. How We Use Your Information</button>
+            <div class="panel">
+                <p>Your information is used to provide personalized job recommendations, improve our services, and respond to inquiries. We may also use your data for marketing purposes, but only with your consent.</p>
+            </div>
+
+            <button class="accordion">3. Data Protection</button>
+            <div class="panel">
+                <p>We implement security measures to protect your data, including encryption and secure servers. However, no method of transmission over the internet is completely secure, so we cannot guarantee absolute security.</p>
+            </div>
+
+            <button class="accordion">4. Sharing Your Information</button>
+            <div class="panel">
+                <p>We do not sell, rent, or share your personal information with third parties for marketing purposes without your consent. We may share data with trusted partners for job listings or technical support.</p>
+            </div>
+
+            <button class="accordion">5. Your Rights</button>
+            <div class="panel">
+                <p>You have the right to access, update, or delete your personal information. To do so, contact our support team at <a href="mailto:support@questpro.com">support@questpro.com</a>.</p>
+            </div>
+
+            <button class="accordion">6. Changes to This Privacy Policy</button>
+            <div class="panel">
+                <p>We may update this privacy policy from time to time. Any changes will be posted on this page, and we will notify you via email if there are significant updates.</p>
+            </div>
+
+            <button class="accordion">7. Contact Us</button>
+            <div class="panel">
+                <p>If you have any questions about this privacy policy or our practices, feel free to contact us at <a href="mailto:support@questpro.com">support@questpro.com</a>.</p>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <section class="search-section">
-            <div class="container">
-                <div class="search-bar">
-                    <div class="search-inputs">
-                        <input type="text" class="search-input" placeholder="Job title or keyword...">
-                        <input type="text" class="search-input" placeholder="Location...">
-                        <button class="btn">Search Jobs</button>
-                    </div>
-                    <div class="filter-section">
-                        <select class="search-input">
-                            <option value="">Job Type</option>
-                            <option>Full-time</option>
-                            <option>Part-time</option>
-                            <option>Contract</option>
-                            <option>Remote</option>
-                        </select>
-                        <select class="search-input">
-                            <option value="">Experience Level</option>
-                            <option>Entry Level</option>
-                            <option>Mid Level</option>
-                            <option>Senior Level</option>
-                            <option>Executive</option>
-                        </select>
-                        <select class="search-input">
-                            <option value="">Salary Range</option>
-                            <option>Ksh.0 - 50k</option>
-                            <option>Ksh.50k - 100k</option>
-                            <option>Ksh.100k - 150k</option>
-                            <option>Ksh.150k+</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+  <footer>
+      <div class="footer-content">
+          <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+          <div class="social-links">
+              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          </div>
         <div class="container">
-            <div class="job-grid">
-                <div class="job-card">
-                    <h3 class="job-title">Senior Software Engineer</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Tech Solutions Inc.</span>
-                    </div>
-                    <div class="job-details">
-                        <span class="job-detail"><i class="fas fa-map-marker-alt"></i> New York</span>
-                        <span class="job-detail"><i class="fas fa-clock"></i> Full-time</span>
-                        <span class="job-detail"><i class="fas fa-wallet"></i> Ksh.120k - 150k</span>
-                    </div>
-                    <p>Join our team to build innovative solutions using cutting-edge technologies.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
-
-                <div class="job-card">
-                    <h3 class="job-title">Marketing Trainee</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Setman Holdings</span>
-                    </div>
-                    <div class="job-details">
-                        <span class="job-detail"><i class="fas fa-map-marker-alt"></i> Kisumu,Kenya</span>
-                        <span class="job-detail"><i class="fas fa-clock"></i> Part-time</span>
-                        <span class="job-detail"><i class="fas fa-wallet"></i> Ksh.50k - 70k</span>
-                    </div>
-                    <p>Join our team to expand your marketing skills and drive sales growth.</p>
-                    <a href="#" class="btn">Apply Now</a>
-                </div>
-                <div class="job-card">
-                    <h3 class="job-title">Software Engineer</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Tech Solutions Inc.</span>
-                    </div>
-                    <div class="job-details">
-                        <span class="job-detail"><i class="fas fa-map-marker-alt"></i> New York</span>
-                        <span class="job-detail"><i class="fas fa-clock"></i> Full-time</span>
-                        <span class="job-detail"><i class="fas fa-wallet"></i> Ksh.120k - 150k</span>
-                    </div>
-                        <p>Join our team to expand your marketing skills and drive sales growth.</p>
-                        <a href="#" class="btn">Apply Now</a>
-                        
-            </div>
+          <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
                 
-
-            <div class="pagination">
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn">Next</button>
             </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-content container">
-            <ul class="footer-links">
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
-            </ul>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+      </div>
+  </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const menuIcon = mobileToggle.querySelector('i');
-
-            // Mobile menu toggle
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                menuIcon.classList.toggle('fa-bars');
-                menuIcon.classList.toggle('fa-times');
+        // Accordion functionality
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
             });
-
-            // Copyright year
-            document.getElementById('copyright-year').textContent = new Date().getFullYear();
-        });
-                
-        
+        }
+     
+         document.getElementById("copyright-year").textContent = new Date().getFullYear();
     </script>
+    
 </body>
 </html>

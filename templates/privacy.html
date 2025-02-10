@@ -13,9 +13,6 @@
         --accent-color: #2ecc71;
         --text-light: #ffffff;
         --text-dark: #333333;
-          --spacing-base: 1rem;
-          --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-          --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         body {
             font-family: Arial, sans-serif;
@@ -107,46 +104,46 @@
 
 
       footer {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
+          background-color: var(--primary-color);
+          color: var(--text-light);
+          padding: 3rem 0;
+          margin-top: 4rem;
+      }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
+      .footer-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          text-align: center;
+      }
 
-        .footer-content ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+      .footer-content ul {
+          list-style: none;
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 2rem;
+      }
 
-        .footer-content a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+      .footer-content a {
+          color: var(--text-light);
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
 
-        .footer-content a:hover {
-            color: #ccc;
-        }
+      .footer-content a:hover {
+          color: #ccc;
+      }
 
       .social-links {
-          margin: 1.5rem 0;
-      }
-        .social-links a {
-            font-size: 1.2rem;
-            margin: 0 1rem;
-            color: var(--text-light);
+            margin: 1.5rem 0;
         }
+
+      .social-links a {
+          font-size: 1.2rem;
+          margin: 0 1rem;
+      }
         /* Accordion Styling */
-      .accordion {
+        .accordion {
             background-color: #f1f1f1;
             color: #003366;
             cursor: pointer;
@@ -232,27 +229,25 @@
             </div>
         </div>
     </div>
-
-  <footer>
-      <div class="footer-content">
-          <ul>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
-          </ul>
-          <div class="social-links">
-              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          </div>
-        <div class="container">
-          <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-                
+    <footer>
+        <div class="footer-content">
+            <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
             </div>
-      </div>
-  </footer>
+            <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    </div>
 
     <script>
         // Accordion functionality
@@ -268,8 +263,9 @@
                 }
             });
         }
-     
-         document.getElementById("copyright-year").textContent = new Date().getFullYear();
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+                
     </script>
     
 </body>

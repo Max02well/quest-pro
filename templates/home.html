@@ -21,28 +21,32 @@
                 --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             }
           .dark-mode {
-              --primary-color: #1a1a1a;
-              --primary-light: #2d2d2d;
-              --primary-dark: #0f0f0f;
-              --secondary-color: #333333;
+              --primary-color: #000;
+              --primary-light:#000;
+              --primary-dark: #000;
+              --secondary-color:#fff;
               --text-dark: #ffffff;
-              --text-light: #e0e0e0;
+              --text-light: #ffffff;
               --accent-color: #2ecc71;
-              background-color: #121212;
+              background-color: #333333;
           }
 
           .dark-mode .feature-card,
           .dark-mode .testimonial-card {
-              background: #1f1f1f;
+              background: var(--primary-light);
               color: var(--text-light);
           }
-
+          .dark-mode .h2-testimonial{
+              color: var(--text-light);
+          }
+          }
+          
           .dark-mode .stats-section {
               background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
           }
 
           .dark-mode .testimonials {
-              background-color: #121212;
+              background-color: #0f0f0f;;
           }
 
           .dark-mode #darkModeToggle {
@@ -85,6 +89,9 @@
               color: #fff;
               text-decoration: none;
           }
+          .nav-brand i {
+              color: var(--accent-color);
+          }
           .nav-menu {
               display: flex;
               align-items: center;
@@ -118,6 +125,8 @@
               border: none;
               font-size: 1.5rem;
               cursor: pointer;
+              color: var(--text-light);
+
           }
           .mobile-toggle .fa-times {
               transform: rotate(180deg);
@@ -425,16 +434,15 @@
 
                 .nav-menu {
                     position: fixed;
-                    top: 0;
+                    top: 60px;
                     left: -100%;
                     width: 100%;
-                    height: 100%;
+                    height: calc(100vh - 60px);
                     background: var(--primary-color);
                     flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    transition: left 0.3s ease;
-                    z-index: 999;
+                    justify-content: flex-start;
+                    padding-top: 2rem;
+                    transition: var(--transition);
                 }
 
                 .nav-menu.active {
@@ -445,8 +453,12 @@
                     font-size: 1.5rem;
                     margin: 15px 0;
                 }
-                .h2,h1{
-                    font-size: 1rem;
+                h1 {
+                    font-size: 2rem;
+                }
+
+                h2 {
+                    font-size: 1.75rem;
                 }
             }
         </style>
@@ -456,12 +468,12 @@
         <header class="header">
             <div class="container">
                 <nav class="nav">
-
-                    <a href="/" class="nav-brand">
-                        <i class="fas fa-cube" style="color:#27ae60;""></i> QuestPro</a>
-                    <button class="mobile-toggle" aria-label="Toggle Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                        <a href="/" class="nav-brand">
+                            <i class="fas fa-cube"></i> QuestPro
+                        </a>
+                        <button class="mobile-toggle" aria-label="Toggle Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     <div class="nav-menu">
                         <a href="/" class="nav-link active">Home</a>
                         <a href="/explore" class="nav-link">Explore</a>
@@ -549,7 +561,7 @@
         </section>
         <section class="testimonials">
             <div class="test-container">
-                <h2>Success Stories</h2>
+                <h2 class="h2-testimonial">Success Stories</h2>
                 <div class="testimonial-grid">
                     <div class="testimonial-card animate-fadein">
                         <img src="https://media.istockphoto.com/id/2151279555/photo/business-woman-thinking-and-laptop-for-online-research-in-office-and-information-on-digital.webp?a=1&b=1&s=612x612&w=0&k=20&c=vdIzqNQ8zAaHIrMz1zHIAqQPGoXUBuRXjgPoNMmxD3Y=" alt="Sarah Johnson">
@@ -661,48 +673,34 @@
                         });
 
                         // Mobile menu functionality
-                        document.addEventListener('DOMContentLoaded', () => {
-                            const mobileToggle = document.querySelector('.mobile-toggle');
-                            const navMenu = document.querySelector('.nav-menu');
-                            const menuIcon = mobileToggle.querySelector('i');
-                            const navLinks = document.querySelectorAll('.nav-link');
+                        const mobileToggle = document.querySelector('.mobile-toggle');
+                        const navMenu = document.querySelector('.nav-menu');
+                        const menuIcon = mobileToggle.querySelector('i');
 
-                            // Toggle mobile menu
-                            mobileToggle.addEventListener('click', () => {
-                                navMenu.classList.toggle('active');
-                                const isExpanded = navMenu.classList.contains('active');
+                        mobileToggle.addEventListener('click', () => {
+                            navMenu.classList.toggle('active');
 
-                                menuIcon.classList.toggle('fa-bars', !isExpanded);
-                                menuIcon.classList.toggle('fa-times', isExpanded);
-                                mobileToggle.setAttribute('aria-expanded', isExpanded);
-                                document.body.style.overflow = isExpanded ? 'hidden' : 'auto';
-                            });
-
-                            // Close menu when clicking outside
-                            document.addEventListener('click', (e) => {
-                                if (window.innerWidth <= 768 && 
-                                    !e.target.closest('.nav') && 
-                                    navMenu.classList.contains('active')) {
-
+                            // Toggle menu icon
+                            if (menuIcon.classList.contains('fa-bars')) {
+                                menuIcon.classList.remove('fa-bars');
+                                menuIcon.classList.add('fa-times');
+                                mobileToggle.setAttribute('aria-expanded', 'true');
+                            } else {
+                                menuIcon.classList.remove('fa-times');
+                                menuIcon.classList.add('fa-bars');
+                                mobileToggle.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        document.addEventListener('click', (e) => {
+                            if (window.innerWidth <= 768) {
+                                if (!e.target.closest('.nav') && navMenu.classList.contains('active')) {
                                     navMenu.classList.remove('active');
                                     menuIcon.classList.remove('fa-times');
                                     menuIcon.classList.add('fa-bars');
                                     mobileToggle.setAttribute('aria-expanded', 'false');
-                                    document.body.style.overflow = 'auto';
                                 }
-                            });
-
-                            // Handle nav link clicks
-                            navLinks.forEach(link => {
-                                link.addEventListener('click', () => {
-                                    navMenu.classList.remove('active');
-                                    document.body.style.overflow = 'auto';
-                                    menuIcon.classList.remove('fa-times');
-                                    menuIcon.classList.add('fa-bars');
-                                });
-                            });
+                            }
                         });
-
                         // Set copyright year
                         document.getElementById("copyright-year").textContent = new Date().getFullYear();
                         

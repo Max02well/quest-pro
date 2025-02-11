@@ -11,8 +11,8 @@
             --primary-light: #1e5c94;
             --primary-dark: #0d2b47;
             --secondary-color: #4B4952;
-            --accent-color: #2ecc71;
-            --text-light: #ffffff;
+            --accent-color: #2ecc71;   
+            --text-light: #ffffff;       
             --text-dark: #333333;
             --spacing-base: 1rem;
             --transition: all 0.3s ease;
@@ -51,25 +51,28 @@
         }
 
         .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 0;
+          }
+          .nav-brand {
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--text-light);
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+          }
+          .nav-brand i {
+              color: var(--accent-color);
+          }
+          .nav-menu {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+          }
         .nav-link {
             color: var(--text-light);
             text-decoration: none;
@@ -98,6 +101,12 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--text-light);
+
+        }
+        .mobile-toggle .fa-times {
+            transform: rotate(180deg);
+            transition: var(--transition);
         }
         .hero {
             text-align: center;
@@ -317,16 +326,15 @@
 
             .nav-menu {
                 position: fixed;
-                top: 0;
+                top: 60px;
                 left: -100%;
                 width: 100%;
-                height: 100%;
-                background: var( --primary-color);
+                height: calc(100vh - 60px);
+                background: var(--primary-color);
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: left 0.3s ease;
-                z-index: 999;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: var(--transition);
             }
 
             .nav-menu.active {
@@ -337,8 +345,12 @@
                 font-size: 1.5rem;
                 margin: 15px 0;
             }
-            .h1,h2{
-                font-size: 1.5rem;
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
             }
         }
     </style>
@@ -347,12 +359,12 @@
         <header class="header">
             <div class="container">
                 <nav class="nav">
-                    
-                    <a href="/" class="nav-brand">
-                        <i class="fas fa-cube" style="color:#23b65d;"></i> QuestPro</a>
-                    <button class="mobile-toggle" aria-label="Toggle Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                        <a href="/" class="nav-brand">
+                            <i class="fas fa-cube"></i> QuestPro
+                        </a>
+                        <button class="mobile-toggle" aria-label="Toggle Menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     <div class="nav-menu">
                         <a href="/" class="nav-link">Home</a>
                         <a href="/explore" class="nav-link">Explore</a>
@@ -450,23 +462,35 @@
             <div class="container">
                 <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
                       <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                        const mobileToggle = document.querySelector('.mobile-toggle');
-                        const navMenu = document.querySelector('.nav-menu');
-                        const navLinks = document.querySelectorAll('.nav-link');
+                          // Mobile menu toggle
+                          const mobileToggle = document.querySelector('.mobile-toggle');
+                          const navMenu = document.querySelector('.nav-menu');
+                          const menuIcon = mobileToggle.querySelector('i');
 
-                        mobileToggle.addEventListener('click', () => {
-                            navMenu.classList.toggle('active');
-                            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-                        });
+                          mobileToggle.addEventListener('click', () => {
+                              navMenu.classList.toggle('active');
 
-                        navLinks.forEach(link => {
-                            link.addEventListener('click', () => {
-                                navMenu.classList.remove('active');
-                                document.body.style.overflow = 'auto';
-                            });
-                        });
-                    });
+                              // Toggle menu icon
+                              if (menuIcon.classList.contains('fa-bars')) {
+                                  menuIcon.classList.remove('fa-bars');
+                                  menuIcon.classList.add('fa-times');
+                                  mobileToggle.setAttribute('aria-expanded', 'true');
+                              } else {
+                                  menuIcon.classList.remove('fa-times');
+                                  menuIcon.classList.add('fa-bars');
+                                  mobileToggle.setAttribute('aria-expanded', 'false');
+                              }
+                          });
+                          document.addEventListener('click', (e) => {
+                              if (window.innerWidth <= 768) {
+                                  if (!e.target.closest('.nav') && navMenu.classList.contains('active')) {
+                                      navMenu.classList.remove('active');
+                                      menuIcon.classList.remove('fa-times');
+                                      menuIcon.classList.add('fa-bars');
+                                      mobileToggle.setAttribute('aria-expanded', 'false');
+                                  }
+                              }
+                          });
                           // Copyright year
                  document.getElementById("copyright-year").textContent = new Date().getFullYear();
                 </script>

@@ -1,354 +1,402 @@
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Terms of Service - QuestPro</title>
-                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-                    <style>
-                        :root {
-                            --primary-color: #164773;
-                            --primary-light: #1e5c94;
-                            --primary-dark: #0d2b47;
-                            --secondary-color: #4B4952;
-                            --accent-color: #2ecc71;   
-                            --text-light: #ffffff;       
-                            --text-dark: #333333;
-                            --spacing-base: 1rem;
-                            --transition: all 0.3s ease;
-                            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-                            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-                            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-                        }
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Terms of Service - QuestPro</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --primary-color: #164773;
+                --primary-light: #1e5c94;
+                --primary-dark: #0d2b47;
+                --secondary-color: #4b4952;
+                --accent-color: #2ecc71;
+                --text-light: #ffffff;
+                --text-dark: #333333;
+                --spacing-base: 1rem;
+                --transition: all 0.3s ease;
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
 
-                        .dark-mode {
-                            --primary-color: #000;
-                            --primary-light: #000;
-                            --primary-dark: #000;
-                            --secondary-color: #fff;
-                            --text-dark: #ffffff;
-                            --text-light: #ffffff;
-                            --accent-color: #2ecc71;
-                            background-color: #333333;
-                        }
+            .dark-mode {
+                --primary-color: #000;
+                --primary-light: #000;
+                --primary-dark: #000;
+                --secondary-color: #fff;
+                --text-dark: #ffffff;
+                --text-light: #ffffff;
+                --accent-color: #2ecc71;
+                background-color: #333333;
+            }
 
-                        .dark-mode .terms-card {
-                            background: var(--primary-light);
-                            color: var(--text-light);
-                        }
+            .dark-mode .terms-card {
+                background: var(--primary-light);
+                color: var(--text-light);
+            }
 
-                        .dark-mode .footer {
-                            background: var(--primary-dark);
-                        }
+            .dark-mode .footer {
+                background: var(--primary-dark);
+            }
 
-                        * {
-                            margin: 0;
-                            padding: 0;
-                            box-sizing: border-box;
-                        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-                        body {
-                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                            line-height: 1.6;
-                            background-color: #f8f9fa;
-                            padding-top: 80px;
-                        }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.6;
+                background-color: #f8f9fa;
+                padding-top: 80px;
+            }
 
-                        .container {
-                            max-width: 1200px;
-                            margin: 0 auto;
-                            padding: 0 15px;
-                        }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
 
-                        /* Header Styles */
-                        .header {
-                            position: fixed;
-                            width: 100%;
-                            top: 0;
-                            background-color: var(--primary-color);
-                            box-shadow: var(--shadow-sm);
-                            z-index: 1000;
-                        }
+            /* Header Styles */
+            .header {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                background-color: var(--primary-color);
+                box-shadow: var(--shadow-sm);
+                z-index: 1000;
+            }
 
-                        .nav {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            padding: 15px 0;
-                        }
+            .nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
 
-                        .nav-brand {
-                            font-size: 1.5rem;
-                            font-weight: 700;
-                            color: var(--text-light);
-                            text-decoration: none;
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                        }
+            .nav-brand {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-light);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-                        .nav-brand i {
-                            color: var(--accent-color);
-                        }
+            .nav-brand i {
+                color: var(--accent-color);
+            }
 
-                        .nav-menu {
-                            display: flex;
-                            align-items: center;
-                            gap: 20px;
-                        }
+            .nav-menu {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
 
-                        .nav-link {
-                            color: var(--text-light);
-                            text-decoration: none;
-                            font-weight: 500;
-                            transition: var(--transition);
-                        }
+            .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+            }
 
-                        .nav-link:hover, 
-                        .nav-link.active {
-                            color: var(--accent-color);
-                        }
+            .nav-link:hover,
+            .nav-link.active {
+                color: var(--accent-color);
+            }
 
-                        .mobile-toggle {
-                            display: none;
-                            background: none;
-                            border: none;
-                            font-size: 1.5rem;
-                            cursor: pointer;
-                            color: var(--text-light);
-                        }
+            .mobile-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-light);
+            }
 
-                        /* Terms Content */
-                        .terms-container {
-                            padding: 4rem 0;
-                        }
+            /* Terms Content */
+            .terms-container {
+                padding: 4rem 0;
+            }
 
-                        .terms-header {
-                            text-align: center;
-                            margin-bottom: 3rem;
-                        }
+            .terms-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
 
-                        .terms-header h1 {
-                            font-size: 2.5rem;
-                            color: var(--primary-color);
-                            margin-bottom: 1rem;
-                        }
+            .terms-header h1 {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
 
-                        .terms-card {
-                            background: white;
-                            border-radius: 12px;
-                            padding: 2rem;
-                            box-shadow: var(--shadow-md);
-                        }
+            .terms-card {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+            }
 
-                        .term-item {
-                            margin-bottom: 2.5rem;
-                        }
+            .term-item {
+                margin-bottom: 2.5rem;
+            }
 
-                        .term-item h2 {
-                            color: var(--primary-color);
-                            margin-bottom: 1rem;
-                            font-size: 1.5rem;
-                        }
+            .term-item h2 {
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
 
-                        .term-item p {
-                            color: var(--secondary-color);
-                            line-height: 1.8;
-                        }
+            .term-item p {
+                color: var(--secondary-color);
+                line-height: 1.8;
+            }
 
-                        footer {
-                            background-color: var(--primary-dark);
-                            color: var(--text-light);
-                            padding: 3rem 0;
-                            margin-top: 4rem;
-                        }
+            footer {
+                background-color: var(--primary-dark);
+                color: var(--text-light);
+                padding: 3rem 0;
+                margin-top: 4rem;
+            }
 
-                        .footer-content {
-                            max-width: 1200px;
-                            margin: 0 auto;
-                            text-align: center;
-                        }
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                text-align: center;
+            }
 
-                        .footer-content ul {
-                            list-style: none;
-                            display: flex;
-                            justify-content: center;
-                            gap: 2rem;
-                            margin-bottom: 2rem;
-                        }
+            .footer-content ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
 
-                        .footer-content a {
-                            color: var(--text-light);
-                            text-decoration: none;
-                            transition: color 0.3s ease;
-                        }
+            .footer-content a {
+                color: var(--text-light);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
 
-                        .footer-content a:hover {
-                            color: var(--accent-color);
-                        }
+            .footer-content a:hover {
+                color: var(--accent-color);
+            }
 
-                        .social-links {
-                            margin: 1.5rem 0;
-                        }
+            .social-links {
+                margin: 1.5rem 0;
+            }
 
-                        .social-links a {
-                            font-size: 1.5rem;
-                            margin: 0 1rem;
-                            color: var(--text-light);
-                            transition: color 0.3s ease;
-                        }
+            .social-links a {
+                font-size: 1.5rem;
+                margin: 0 1rem;
+                color: var(--text-light);
+                transition: color 0.3s ease;
+            }
 
-                        .social-links a:hover {
-                            color: var(--accent-color);
-                        }
+            .social-links a:hover {
+                color: var(--accent-color);
+            }
 
-                        @media (max-width: 768px) {
-                            body {
-                                padding-top: 70px;
-                            }
+            @media (max-width: 768px) {
+                body {
+                    padding-top: 70px;
+                }
 
-                            .mobile-toggle {
-                                display: block;
-                            }
+                .mobile-toggle {
+                    display: block;
+                }
 
-                            .nav-menu {
-                                position: fixed;
-                                top: 70px;
-                                left: -100%;
-                                width: 100%;
-                                height: calc(100vh - 70px);
-                                background: var(--primary-color);
-                                flex-direction: column;
-                                padding: 2rem;
-                                transition: var(--transition);
-                            }
+                .nav-menu {
+                    position: fixed;
+                    top: 70px;
+                    left: -100%;
+                    width: 100%;
+                    height: calc(100vh - 70px);
+                    background: var(--primary-color);
+                    flex-direction: column;
+                    padding: 2rem;
+                    transition: var(--transition);
+                }
 
-                            .nav-menu.active {
-                                left: 0;
-                            }
+                .nav-menu.active {
+                    left: 0;
+                }
 
-                            .terms-header h1 {
-                                font-size: 2rem;
-                            }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <header class="header">
-                        <div class="container">
-                            <nav class="nav">
-                                <a href="/" class="nav-brand">
-                                    <i class="fas fa-cube"></i> QuestPro
-                                </a>
-                                <button class="mobile-toggle" aria-label="Toggle Menu">
-                                    <i class="fas fa-bars"></i>
-                                </button>
-                                <div class="nav-menu">
-                                    <a href="/" class="nav-link">Home</a>
-                                    <a href="/explore" class="nav-link">Explore</a>
-                                    <a href="/about" class="nav-link">About</a>
-                                    <a href="/contact" class="nav-link">Contact</a>
-                                    
-                                </div>
-                            </nav>
-                        </div>
-                    </header>
+                .terms-header h1 {
+                    font-size: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="/" class="nav-brand">
+                        <i class="fas fa-cube"></i> QuestPro
+                    </a>
+                    <button class="mobile-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu">
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="/explore" class="nav-link">Explore</a>
+                        <a href="/about" class="nav-link">About</a>
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
-                    <main class="container">
-                        <div class="terms-container">
-                            <div class="terms-header">
-                                <h1>Terms of Service</h1>
-                                <p>Last Updated: September 20, 2023</p>
-                            </div>
+        <main class="container">
+            <div class="terms-container">
+                <div class="terms-header">
+                    <h1>Terms of Service</h1>
+                    <p>Last Updated: September 20, 2024</p>
+                </div>
 
-                            <div class="terms-card">
-                                <div class="term-item">
-                                    <h2>1. Acceptance of Terms</h2>
-                                    <p>By accessing and using QuestPro's services, you agree to be bound by these terms and conditions. If you disagree with any part, please refrain from using our services.</p>
-                                </div>
+                <div class="terms-card">
+                    <div class="term-item">
+                        <h2>1. Acceptance of Terms</h2>
+                        <p>
+                            By accessing and using QuestPro's services, you
+                            agree to be bound by these terms and conditions. If
+                            you disagree with any part, please refrain from
+                            using our services.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>2. User Accounts</h2>
-                                    <p>You are responsible for maintaining account confidentiality and all activities under your account. Promptly notify us of any unauthorized use or security breaches.</p>
-                                </div>
+                    <div class="term-item">
+                        <h2>2. User Accounts</h2>
+                        <p>
+                            You are responsible for maintaining account
+                            confidentiality and all activities under your
+                            account. Promptly notify us of any unauthorized use
+                            or security breaches.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>3. Intellectual Property</h2>
-                                    <p>All content on QuestPro is protected by intellectual property laws. Unauthorized use, reproduction, or distribution of any materials is strictly prohibited.</p>
-                                </div>
+                    <div class="term-item">
+                        <h2>3. Intellectual Property</h2>
+                        <p>
+                            All content on QuestPro is protected by intellectual
+                            property laws. Unauthorized use, reproduction, or
+                            distribution of any materials is strictly
+                            prohibited.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>4. User Content</h2>
-                                    <p>You retain ownership of your content but grant us a worldwide license to use, reproduce, and display it in connection with our services.</p>
-                                </div>
+                    <div class="term-item">
+                        <h2>4. User Content</h2>
+                        <p>
+                            You retain ownership of your content but grant us a
+                            worldwide license to use, reproduce, and display it
+                            in connection with our services.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>5. Disclaimer of Warranties</h2>
-                                    <p>Services are provided "as-is" without warranties of any kind. We don't guarantee uninterrupted or error-free service.</p>
-                                </div>
+                    <div class="term-item">
+                        <h2>5. Disclaimer of Warranties</h2>
+                        <p>
+                            Services are provided "as-is" without warranties of
+                            any kind. We don't guarantee uninterrupted or
+                            error-free service.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>6. Limitation of Liability</h2>
-                                    <p>QuestPro shall not be liable for any indirect, incidental, or consequential damages arising from service use.</p>
-                                </div>
+                    <div class="term-item">
+                        <h2>6. Limitation of Liability</h2>
+                        <p>
+                            QuestPro shall not be liable for any indirect,
+                            incidental, or consequential damages arising from
+                            service use.
+                        </p>
+                    </div>
 
-                                <div class="term-item">
-                                    <h2>7. Termination</h2>
-                                    <p>We reserve the right to terminate access with 15 days' notice. All provisions surviving termination will remain in effect.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
+                    <div class="term-item">
+                        <h2>7. Termination</h2>
+                        <p>
+                            We reserve the right to terminate access with 15
+                            days' notice. All provisions surviving termination
+                            will remain in effect.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-                    <footer>
-                        <div class="footer-content">
-                            <ul>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="/contact">Contact</a></li>
-                                <li><a href="/privacy">Privacy Policy</a></li>
-                                
-                            </ul>
-                            <div class="social-links">
-                                
-                                <a href="https://x.com/gogo1_onyango" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/maxwell-gogo-2015a0231/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://instagram.com/gogo.maxwell22" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                            <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-                        </div>
-                    </footer>
+        <footer>
+            <div class="footer-content">
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+                <div class="social-links">
+                    <a
+                        href="https://x.com/gogo1_onyango"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a
+                        href="https://linkedin.com/in/maxwell-gogo-2015a0231/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a
+                        href="https://instagram.com/gogo.maxwell22"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p>
+                    &copy; <span id="copyright-year"></span> QuestPro. All
+                    rights reserved.
+                </p>
+            </div>
+        </footer>
 
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            // Mobile menu toggle
-                            const mobileToggle = document.querySelector('.mobile-toggle');
-                            const navMenu = document.querySelector('.nav-menu');
-                            const menuIcon = mobileToggle.querySelector('i');
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Mobile menu toggle
+                const mobileToggle = document.querySelector(".mobile-toggle");
+                const navMenu = document.querySelector(".nav-menu");
+                const menuIcon = mobileToggle.querySelector("i");
 
-                            mobileToggle.addEventListener('click', () => {
-                                navMenu.classList.toggle('active');
-                                menuIcon.classList.toggle('fa-bars');
-                                menuIcon.classList.toggle('fa-times');
-                            });
+                mobileToggle.addEventListener("click", () => {
+                    navMenu.classList.toggle("active");
+                    menuIcon.classList.toggle("fa-bars");
+                    menuIcon.classList.toggle("fa-times");
+                });
 
-                            // Dark mode toggle
-                            const darkModeToggle = document.getElementById('darkModeToggle');
-                            darkModeToggle.addEventListener('click', () => {
-                                document.body.classList.toggle('dark-mode');
-                                darkModeToggle.classList.toggle('fa-moon');
-                                darkModeToggle.classList.toggle('fa-sun');
-                            });
+                // Dark mode toggle
+                const darkModeToggle =
+                    document.getElementById("darkModeToggle");
+                darkModeToggle.addEventListener("click", () => {
+                    document.body.classList.toggle("dark-mode");
+                    darkModeToggle.classList.toggle("fa-moon");
+                    darkModeToggle.classList.toggle("fa-sun");
+                });
 
-                            // Copyright year
-                            document.getElementById('copyright-year').textContent = 
-                                new Date().getFullYear();
-                        });
-                    </script>
-                </body>
-                </html>
+                // Copyright year
+                document.getElementById("copyright-year").textContent =
+                    new Date().getFullYear();
+            });
+        </script>
+    </body>
+</html>

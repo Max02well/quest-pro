@@ -171,3 +171,4 @@ cython_debug/
 .pypirc
 #Secret key configuration
 .secretkey
+.vercel

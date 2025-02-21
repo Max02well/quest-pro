@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+<button class="mobile-toggle" aria-label="Toggle Menu">
+    <i class="fas fa-bars"></i>
+</button>
+{% block content %}
+    <div class="container">
+        <h1 class="mb-4">{{ job.title }}</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead">{{ job.description }}</p>
+                <h5 class="mt-4">Responsibilities</h5>
+                <ul>
+                    {% for responsibility in job.responsibilities %}
+                        <li>{{ responsibility }}</li>
+                    {% endfor %}
+                </ul>
+                <h5 class="mt-4">Skills</h5>
+                <ul>
+                    {% for skill in job.skills %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+                <h5 class="mt-4">Location</h5>
+                <p>{{ job.location }}</p>
+                <h5 class="mt-4">Company</h5>
+                <p>{{ job.company }}</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Job Details</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Type:</strong> {{ job.job_type }}</li>
+                            <li class="list-group-item"><strong>Experience:</strong> {{ job.experience_level }}</li>
+                            <li class="list-group-item"><strong>Salary:</strong> {{ job.salary }}</li>
+                            <li class="list-group-item"><strong>Posted:</strong> {{ job.created_at }}</li>
+                        </ul>
+                        <a href="{% url 'apply' job.id %}" class="btn btn-primary mt-3">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        // Add any JavaScript functionality here
+    </script>
+{% endblock %}

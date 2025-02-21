@@ -1,495 +1,484 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Jobs - QuestPro</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #164773;
-            --primary-light: #1e5c94;
-            --primary-dark: #0d2b47;
-            --secondary-color: #4B4952;
-            --accent-color: #2ecc71;   
-            --text-light: #ffffff;       
-            --text-dark: #333333;
-            --spacing-base: 1rem;
-            --transition: all 0.3s ease;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            background-color: #f8f9fa;
-            color: var(--text-dark);
-            padding-top: 80px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header Styles */
-        .header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background-color: var(--primary-color);
-            box-shadow: var(--shadow-sm);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-brand i {
-            color: var(--accent-color);
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-link:hover, 
-        .nav-link.active {
-            color: var(--accent-color);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        /* Search Section */
-        .search-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            padding: 4rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .search-bar {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .search-inputs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .filter-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        /* Job Listings */
-        .job-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .job-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .job-title {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .company-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .company-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-        }
-
-        .job-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        .job-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--accent-color);
-            color: var(--text-light);
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 3rem 0;
-        }
-
-        .page-btn {
-            padding: 0.75rem 1.25rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 50px;
-            color: var(--primary-color);
-            background: white;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .page-btn.active,
-        .page-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            padding: 4rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            padding: 0;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Explore Jobs - QuestPro</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <style>
+            /* (CSS remains unchanged from original) */
+            :root {
+                --primary-color: #164773;
+                --primary-light: #1e5c94;
+                --primary-dark: #0d2b47;
+                --secondary-color: #4B4952;
+                --accent-color: #2ecc71;   
+                --text-light: #ffffff;       
+                --text-dark: #333333;
+                --spacing-base: 1rem;
+                --transition: all 0.3s ease;
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             }
 
-            .mobile-toggle {
-                display: block;
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.6;
+                background-color: #f8f9fa;
+                color: var(--text-dark);
+                padding-top: 80px;
+            }
+
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+
+            /* Header Styles */
+            .header {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                background-color: var(--primary-color);
+                box-shadow: var(--shadow-sm);
+                z-index: 1000;
+                transition: var(--transition);
+            }
+
+            .nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .nav-brand {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-light);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .nav-brand i {
+                color: var(--accent-color);
             }
 
             .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--primary-color);
-                flex-direction: column;
-                padding: 2rem;
-                transition: var(--transition);
-                z-index: 999;
-            }
-
-            .nav-menu.active {
-                left: 0;
+                display: flex;
+                align-items: center;
+                gap: 20px;
             }
 
             .nav-link {
-                font-size: 1.2rem;
-                padding: 1rem;
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                position: relative;
+                transition: var(--transition);
+            }
+
+            .nav-link:hover, 
+            .nav-link.active {
+                color: var(--accent-color);
+            }
+
+            .mobile-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-light);
+            }
+
+            /* Search Section */
+            .search-section {
+                background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+                padding: 4rem 0;
+                margin-bottom: 3rem;
+            }
+
+            .search-bar {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 2rem;
+                border-radius: 12px;
+                box-shadow: var(--shadow-lg);
+                max-width: 800px;
+                margin: 0 auto;
             }
 
             .search-inputs {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-bottom: 1.5rem;
             }
 
+            .search-input {
+                width: 100%;
+                padding: 1rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: var(--transition);
+            }
+
+            .search-input:focus {
+                outline: none;
+                border-color: var(--accent-color);
+            }
+
+            .filter-section {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            /* Job Listings */
             .job-grid {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 2rem 0;
             }
-        }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="/" class="nav-brand">
-                    <i class="fas fa-cube"></i> QuestPro
-                </a>
-                <button class="mobile-toggle" aria-label="Toggle Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="nav-menu">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/explore" class="nav-link active">Explore</a>
-                    <a href="/about" class="nav-link">About</a>
-                    <a href="/contact" class="nav-link">Contact</a>
-                </div>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section class="search-section">
+            .job-card {
+                background: white;
+                border-radius: 12px;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-sm);
+                transition: var(--transition);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .job-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .job-title {
+                color: var(--primary-color);
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .company-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .company-logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+                background-color: #f8f9fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--primary-color);
+            }
+
+            .job-details {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+                color: var(--secondary-color);
+            }
+
+            .job-detail {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                background-color: var(--accent-color);
+                color: var(--text-light);
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: var(--transition);
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn:hover {
+                background-color: #27ae60;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-md);
+            }
+
+            /* Pagination */
+            .pagination {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                margin: 3rem 0;
+            }
+
+            .page-btn {
+                padding: 0.75rem 1.25rem;
+                border: 2px solid var(--primary-color);
+                border-radius: 50px;
+                color: var(--primary-color);
+                background: white;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .page-btn.active,
+            .page-btn:hover {
+                background-color: var(--primary-color);
+                color: var(--text-light);
+            }
+            /* Footer */
+             footer { background-color: var(--primary-dark); color: var(--text-light); padding: 4rem 0; margin-top: 4rem; } 
+            .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+            .footer-links { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 0; } 
+            .footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
+            .footer-links a:hover { color: var(--accent-color); } 
+            .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; }
+            .social-links a { color: var(--text-light); font-size: 1.5rem; transition: var(--transition); } .social-links a:hover { color: var(--accent-color); transform: translateY(-2px); }
+            @media (max-width: 768px) { body { padding-top: 70px; } .mobile-toggle { display: block; }.nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--primary-color); flex-direction: column; padding: 2rem; transition: var(--transition); z-index: 999; }.nav-menu.active { left: 0; } .nav-link { font-size: 1.2rem; padding: 1rem; }.search-inputs { grid-template-columns: 1fr; } .job-grid { grid-template-columns: 1fr; } }
+
+            /* Footer */
+             footer { background-color: var(--primary-dark); color: var(--text-light); padding: 4rem 0; margin-top: 4rem; }
+            .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+            .footer-links { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 0; } 
+            .footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
+            .footer-links a:hover { color: var(--accent-color); } 
+            .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; }
+            .social-links a { color: var(--text-light); font-size: 1.5rem; transition: var(--transition); } .social-links a:hover { color: var(--accent-color); transform: translateY(-2px); }
+            
+            @media (max-width: 768px) { body { padding-top: 70px; } .mobile-toggle { display: block; }.nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--primary-color); flex-direction: column; padding: 2rem; transition: var(--transition); z-index: 999; }.nav-menu.active { left: 0; } .nav-link { font-size: 1.2rem; padding: 1rem; }.search-inputs { grid-template-columns: 1fr; } .job-grid { grid-template-columns: 1fr; } }
+
+
+            
+        </style>
+    </head>
+    <body>
+        <header class="header">
             <div class="container">
-                <div class="search-bar">
-                    <div class="search-inputs">
-                        <input type="text" class="search-input" placeholder="Job title or keyword...">
-                        <input type="text" class="search-input" placeholder="Location...">
-                        <button class="btn">Search Jobs</button>
+                <nav class="nav">
+                    <a href="/" class="nav-brand">
+                        <i class="fas fa-cube"></i> QuestPro
+                    </a>
+                    <button class="mobile-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu">
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="/explore" class="nav-link active">Explore</a>
+                        <a href="/about" class="nav-link">About</a>
+                        <a href="/contact" class="nav-link">Contact</a>
                     </div>
-                    <div class="filter-section">
-                        <select class="search-input">
-                            <option value="">Job Type</option>
-                            <option>Full-time</option>
-                            <option>Part-time</option>
-                            <option>Contract</option>
-                            <option>Remote</option>
-                        </select>
-                        <select class="search-input">
-                            <option value="">Experience Level</option>
-                            <option>Entry Level</option>
-                            <option>Mid Level</option>
-                            <option>Senior Level</option>
-                            <option>Executive</option>
-                        </select>
-                        <select class="search-input">
-                            <option value="">Salary Range</option>
-                            <option>Ksh.0 - 50k</option>
-                            <option>Ksh.50k - 100k</option>
-                            <option>Ksh.100k - 150k</option>
-                            <option>Ksh.150k+</option>
-                        </select>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-bar">
+                        <div class="search-inputs">
+                            <input type="text" id="keyword-input" class="search-input" placeholder="Job title or keyword...">
+                            <input type="text" id="location-input" class="search-input" placeholder="Location...">
+                            <button class="btn" id="search-button">Search Jobs</button>
+                        </div>
+                        <div class="filter-section">
+                            <select class="search-input" id="job-type-filter">
+                                <option value="">Job Type</option>
+                                <option>Full-time</option>
+                                <option>Part-time</option>
+                                <option>Contract</option>
+                                <option>Remote</option>
+                            </select>
+                            <select class="search-input" id="experience-filter">
+                                <option value="">Experience Level</option>
+                                <option>Entry Level</option>
+                                <option>Mid Level</option>
+                                <option>Senior Level</option>
+                                <option>Executive</option>
+                            </select>
+                            <select class="search-input" id="salary-filter">
+                                <option value="">Salary Range</option>
+                                <option>Ksh.0 - 50k</option>
+                                <option>Ksh.50k - 100k</option>
+                                <option>Ksh.100k - 150k</option>
+                                <option>Ksh.150k+</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="container">
-            <div class="job-grid">
-                <div class="job-card">
-                    <h3 class="job-title">Senior Software Engineer</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Tech Solutions Inc.</span>
-                    </div>
-                    <div class="job-details">
-                        <span class="job-detail"><i class="fas fa-map-marker-alt"></i> New York</span>
-                        <span class="job-detail"><i class="fas fa-clock"></i> Full-time</span>
-                        <span class="job-detail"><i class="fas fa-wallet"></i> Ksh.120k - 150k</span>
-                    </div>
-                    <p>Join our team to build innovative solutions using cutting-edge technologies.</p>
-                    <a href="#" class="btn">Apply Now</a>
+            <div class="container">
+                <div class="job-grid" id="job-grid"></div>
+
+                <div class="pagination">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">Next</button>
                 </div>
+            </div>
+        </main>
 
-                <div class="job-card">
-                    <h3 class="job-title">Marketing Trainee</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Setman Holdings</span>
-                    </div>
-                    <div class="job-details">
-                        <span class="job-detail"><i class="fas fa-map-marker-alt"></i> Kisumu,Kenya</span>
-                        <span class="job-detail"><i class="fas fa-clock"></i> Part-time</span>
-                        <span class="job-detail"><i class="fas fa-wallet"></i> Ksh.50k - 70k</span>
-                    </div>
-                    <p>Join our team to expand your marketing skills and drive sales growth.</p>
-                    <a href="#" class="btn">Apply Now</a>
+        <footer>
+            <div class="footer-content container">
+                <ul class="footer-links">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="https://x.com/gogo1_onyango" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/maxwell-gogo-2015a0231/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/gogo.maxwell22" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
-                <div class="job-card">
-                    <h3 class="job-title">Software Engineer</h3>
-                    <div class="company-info">
-                        <div class="company-logo">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <span class="company-name">Tech Solutions Inc.</span>
-                    </div>
-                    <div class="job-details">
-                        
+                <div class="footer-bottom">
+                    <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+                </div>
             </div>
+        </footer>
 
-            <div class="pagination">
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn">Next</button>
-            </div>
-        </div>
-    </main>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Job data and rendering
+                const jobs = [
+                    {
+                        id: 1,
+                        title: "Senior Software Engineer",
+                        company: "Tech Solutions Inc.",
+                        location: "New York",
+                        type: "Full-time",
+                        experience: "Senior Level",
+                        salaryRange: "Ksh.100k - 150k",
+                        salary: "Ksh.120k - 150k",
+                        description: "Join our team to build innovative solutions using cutting-edge technologies."
+                    },
+                    {
+                        id: 2,
+                        title: "Marketing Trainee",
+                        company: "Setman Holdings",
+                        location: "Kisumu, Kenya",
+                        type: "Part-time",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.50k - 70k",
+                        description: "Join our team to expand your marketing skills and drive sales growth."
+                    }
+                ];
 
-    <footer>
-        <div class="footer-content container">
-            <ul class="footer-links">
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
-            </ul>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+                const jobGrid = document.getElementById('job-grid');
+                const searchButton = document.getElementById('search-button');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const menuIcon = mobileToggle.querySelector('i');
+                const filters = {
+                    keyword: document.getElementById('keyword-input'),
+                    location: document.getElementById('location-input'),
+                    jobType: document.getElementById('job-type-filter'),
+                    experience: document.getElementById('experience-filter'),
+                    salary: document.getElementById('salary-filter')
+                };
 
-            // Mobile menu toggle
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                menuIcon.classList.toggle('fa-bars');
-                menuIcon.classList.toggle('fa-times');
+                function renderJobs(jobsArray) {
+                    jobGrid.innerHTML = '';
+                    jobsArray.forEach(job => {
+                        const jobCard = document.createElement('div');
+                        jobCard.className = 'job-card';
+                        jobCard.innerHTML = `
+                            <h3 class="job-title">${job.title}</h3>
+                            <div class="company-info">
+                                <div class="company-logo">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <span class="company-name">${job.company}</span>
+                            </div>
+                            <div class="job-details">
+                                <span class="job-detail"><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
+                                <span class="job-detail"><i class="fas fa-clock"></i> ${job.type}</span>
+                                <span class="job-detail"><i class="fas fa-wallet"></i> ${job.salary}</span>
+                            </div>
+                            <p>${job.description}</p>
+                            <a href="/job-details.html?id=${job.id}" class="btn">Apply Now</a>
+                        `;
+                        jobGrid.appendChild(jobCard);
+                    });
+                }
+
+                function performSearch() {
+                    const searchCriteria = {
+                        keyword: filters.keyword.value.toLowerCase(),
+                        location: filters.location.value.toLowerCase(),
+                        jobType: filters.jobType.value,
+                        experience: filters.experience.value,
+                        salaryRange: filters.salary.value
+                    };
+
+                    const filteredJobs = jobs.filter(job => {
+                        const matchesKeyword = job.title.toLowerCase().includes(searchCriteria.keyword) ||
+                            job.description.toLowerCase().includes(searchCriteria.keyword);
+                        const matchesLocation = job.location.toLowerCase().includes(searchCriteria.location);
+                        const matchesJobType = searchCriteria.jobType ? job.type === searchCriteria.jobType : true;
+                        const matchesExperience = searchCriteria.experience ? job.experience === searchCriteria.experience : true;
+                        const matchesSalary = searchCriteria.salaryRange ? job.salaryRange === searchCriteria.salaryRange : true;
+
+                        return matchesKeyword && matchesLocation && matchesJobType && matchesExperience && matchesSalary;
+                    });
+
+                    renderJobs(filteredJobs);
+                }
+
+                // Event listeners
+                searchButton.addEventListener('click', performSearch);
+                document.querySelectorAll('.filter-section select').forEach(select => {
+                    select.addEventListener('change', performSearch);
+                });
+
+                // Mobile menu toggle
+                const mobileToggle = document.querySelector('.mobile-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                const menuIcon = mobileToggle.querySelector('i');
+
+                mobileToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuIcon.classList.toggle('fa-bars');
+                    menuIcon.classList.toggle('fa-times');
+                });
+
+                // Initial render
+                renderJobs(jobs);
+
+                // Copyright year
+                document.getElementById('copyright-year').textContent = new Date().getFullYear();
             });
-
-            // Copyright year
-            document.getElementById('copyright-year').textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>

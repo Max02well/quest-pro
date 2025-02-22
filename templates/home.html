@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuestPro</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-      <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QuestPro</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+        <style>
             :root {
                 --primary-color: #164773;
                 --primary-light: #1e5c94;
                 --primary-dark: #0d2b47;
-                --secondary-color: #4B4952;
-                --accent-color: #2ecc71;   
-                --text-light: #ffffff;       
+                --secondary-color: #4b4952;
+                --accent-color: #2ecc71;
+                --text-light: #ffffff;
                 --text-dark: #333333;
                 --spacing-base: 1rem;
                 --transition: all 0.3s ease;
@@ -20,120 +23,119 @@
                 --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
                 --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             }
-          .dark-mode {
-              --primary-color: #000;
-              --primary-light:#000;
-              --primary-dark: #000;
-              --secondary-color:#fff;
-              --text-dark: #ffffff;
-              --text-light: #ffffff;
-              --accent-color: #2ecc71;
-              background-color: #333333;
-          }
+            .dark-mode {
+                --primary-color: #000;
+                --primary-light: #000;
+                --primary-dark: #000;
+                --secondary-color: #fff;
+                --text-dark: #ffffff;
+                --text-light: #ffffff;
+                --accent-color: #2ecc71;
+                background-color: #333333;
+            }
 
-          .dark-mode .feature-card,
-          .dark-mode .testimonial-card {
-              background: var(--primary-light);
-              color: var(--text-light);
-          }
-          .dark-mode .h2-testimonial{
-              color: var(--text-light);
-          }
-          }
-          
-          .dark-mode .stats-section {
-              background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
-          }
+            .dark-mode .feature-card,
+            .dark-mode .testimonial-card {
+                background: var(--primary-light);
+                color: var(--text-light);
+            }
+            .dark-mode .h2-testimonial {
+                color: var(--text-light);
+            }
 
-          .dark-mode .testimonials {
-              background-color: #0f0f0f;;
-          }
+            .dark-mode .stats-section {
+                background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            }
 
-          .dark-mode #darkModeToggle {
-              color: #ffd700;
-          }
+            .dark-mode .testimonials {
+                background-color: #0f0f0f;
+            }
+
+            .dark-mode #darkModeToggle {
+                color: #ffd700;
+            }
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
                 line-height: 1.6;
                 background-color: #f8f9fa;
             }
-          .container {
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 15px;
-          }
-           
-          .header {
-              position: fixed;
-              width: 100%;
-              top: 0;
-              background-color: var(--primary-color);
-              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-              z-index: 1000;
-              transition: all 0.3s ease;
-          }
-          .nav {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 15px 0;
-          }
-          .nav-brand {
-              font-size: 1.5rem;
-              font-weight: 700;
-              color: #fff;
-              text-decoration: none;
-          }
-          .nav-brand i {
-              color: var(--accent-color);
-          }
-          .nav-menu {
-              display: flex;
-              align-items: center;
-              gap: 20px;
-          }
-          .nav-link {
-              color: var(--text-light);
-              text-decoration: none;
-              font-weight: 500;
-              position: relative;
-              transition: color 0.3s ease;
-          }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
 
-          .nav-link:hover, .nav-link.active {
-              color: var(--accent-color);
-          }
+            .header {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                background-color: var(--primary-color);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                transition: all 0.3s ease;
+            }
+            .nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+            .nav-brand {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #fff;
+                text-decoration: none;
+            }
+            .nav-brand i {
+                color: var(--accent-color);
+            }
+            .nav-menu {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                position: relative;
+                transition: color 0.3s ease;
+            }
 
-          .nav-link.active::after {
-              content: '';
-              position: absolute;
-              bottom: -5px;
-              left: 0;
-              width: 100%;
-              height: 2px;
-              background-color: var(--accent-color);
-          }
+            .nav-link:hover,
+            .nav-link.active {
+                color: var(--accent-color);
+            }
 
-          .mobile-toggle {
-              display: none;
-              background: none;
-              border: none;
-              font-size: 1.5rem;
-              cursor: pointer;
-              color: var(--text-light);
+            .nav-link.active::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--accent-color);
+            }
 
-          }
-          .mobile-toggle .fa-times {
-              transform: rotate(180deg);
-              transition: var(--transition);
-          }
+            .mobile-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-light);
+            }
+            .mobile-toggle .fa-times {
+                transform: rotate(180deg);
+                transition: var(--transition);
+            }
 
-            /* Enhanced Hero Section */
             .hero {
                 position: relative;
                 margin-top: 4rem;
@@ -150,13 +152,16 @@
             }
 
             .video-container::after {
-                content: '';
+                content: "";
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+                background: linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.7)
+                );
             }
 
             .video-container video {
@@ -181,7 +186,7 @@
                 font-size: 4rem;
                 margin-bottom: 1.5rem;
                 line-height: 1.2;
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             }
 
             .hero-text p {
@@ -190,7 +195,6 @@
                 opacity: 0.9;
             }
 
-            /* Enhanced Button Styles */
             .btn {
                 display: inline-block;
                 padding: 1rem 2.5rem;
@@ -211,7 +215,6 @@
                 box-shadow: var(--shadow-lg);
             }
 
-            /* Enhanced Features Grid */
             .features-grid {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -247,7 +250,6 @@
                 margin: 0 auto 1.5rem;
             }
 
-            /* Enhanced Job Categories */
             .jobs-section {
                 background: white;
                 padding: 4rem 2rem;
@@ -284,9 +286,12 @@
                 transform: translateY(-5px);
             }
 
-            /* Enhanced Stats Section */
             .stats-section {
-                background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+                background: linear-gradient(
+                    135deg,
+                    var(--primary-color),
+                    var(--primary-dark)
+                );
                 color: var(--text-light);
                 padding: 6rem 2rem;
                 margin: 4rem 0;
@@ -306,64 +311,157 @@
                 margin-bottom: 0.5rem;
                 color: var(--accent-color);
             }
-                    /* Testimonials Section */
-          .testimonials {
-              padding: 4rem 0;
-              background-color: #f8f9fa;
-          }
 
-          .testimonials h2 {
-              text-align: center;
-              margin-bottom: 3rem;
-              font-size: 2.5rem;
-              color: var(--primary-color);
-          }
+            .testimonials {
+                padding: 4rem 0;
+                background-color: #f8f9fa;
+                overflow: hidden;
+            }
 
-          .testimonial-grid {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-              gap: 2rem;
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 2rem;
-          }
+            .testimonials h2 {
+                text-align: center;
+                margin-bottom: 3rem;
+                font-size: 2.5rem;
+                color: var(--primary-color);
+            }
 
-          .testimonial-card {
-              background: white;
-              padding: 2rem;
-              border-radius: 1rem;
-              box-shadow: var(--shadow-sm);
-              text-align: center;
-          }
+            .testimonial-slider {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
 
-          .testimonial-card img {
-              width: 80px;
-              height: 80px;
-              border-radius: 50%;
-              margin: 0 auto 1rem;
-              object-fit: cover;
-          }
+            .slider-wrapper {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                gap: 20px;
+            }
 
-            /* Enhanced Footer */
+            .testimonial-card {
+                flex: 0 0 100%;
+                background: white;
+                padding: 2rem;
+                border-radius: 1rem;
+                box-shadow: var(--shadow-sm);
+                text-align: center;
+                transition: all 0.3s ease;
+                opacity: 0.7;
+                transform: scale(0.9);
+            }
+
+            .testimonial-card.active {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .testimonial-card img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin: 0 auto 1.5rem;
+                object-fit: cover;
+                border: 3px solid var(--accent-color);
+            }
+
+            .testimonial-card blockquote {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin: 1rem 0;
+                font-style: italic;
+                color: var(--text-dark);
+            }
+
+            .testimonial-card .author {
+                font-weight: 600;
+                color: var(--primary-color);
+                margin-top: 1rem;
+            }
+
+            .slider-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                opacity: 0.7;
+            }
+
+            .slider-arrow:hover {
+                opacity: 1;
+                background: var(--accent-color);
+            }
+
+            .slider-prev {
+                left: 0;
+            }
+
+            .slider-next {
+                right: 0;
+            }
+
+            .slider-dots {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 2rem;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #ddd;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .dot.active {
+                background: var(--accent-color);
+                transform: scale(1.2);
+            }
+
+            /* Dark Mode Slider Styles */
+            .dark-mode .slider-arrow {
+                background: var(--secondary-color);
+            }
+            .dark-mode .dot.active {
+                background: var(--accent-color);
+            }
+
             footer {
                 background-color: var(--primary-dark);
                 color: var(--text-light);
-                padding: 4rem 0 2rem;
+                padding: 3.5rem 0 2rem;
             }
 
             .footer-content {
                 max-width: 1200px;
                 margin: 0 auto;
-                padding: 0 2rem;
+                padding: 0 1rem;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 3rem;
+                gap: 4rem;
+            }
+            .footer-section{
+               padding:1rem;
             }
 
             .footer-section h3 {
                 margin-bottom: 1.5rem;
                 font-size: 1.2rem;
                 color: var(--accent-color);
+                
             }
 
             .footer-links {
@@ -371,7 +469,7 @@
             }
 
             .footer-links li {
-                margin-bottom: 0.75rem;
+                margin-bottom: 0.7rem;
             }
 
             .footer-links a {
@@ -391,6 +489,11 @@
                 gap: 1.5rem;
                 justify-content: center;
                 margin-top: 1.5rem;
+            }
+            .social-links h3{
+                margin-bottom: 1.5rem;
+                font-size: 1.2rem;
+                color: var(--accent-color);
             }
 
             .social-links a {
@@ -414,7 +517,6 @@
                 opacity: 0.8;
             }
 
-            /* Enhanced Mobile Responsiveness */
             @media (max-width: 768px) {
                 .hero-text h2 {
                     font-size: 2.5rem;
@@ -449,6 +551,10 @@
                     left: 0;
                 }
 
+                .job-categories {
+                    grid-template-columns: 1fr;
+                }
+
                 .nav-link {
                     font-size: 1.5rem;
                     margin: 15px 0;
@@ -460,247 +566,453 @@
                 h2 {
                     font-size: 1.75rem;
                 }
+                h3 {
+                    font-size: 1.2rem;
+                }
+                .btn {
+                    font-size: 1rem;
+                    padding: 0.75rem 1.5rem;
+                }
+                .testimonial-card {
+                    padding: 1.5rem;
+                }
+                .footer{
+                 padding:0.5rem 0;
+                }
+                .footer-links {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                .footer-content{
+                    grid-template-columns: 1fr;
+                }
+                .footer-section{
+                  padding:0.5rem;
+                }
             }
         </style>
     </head>
-<body>
-    <div>
-        <header class="header">
-            <div class="container">
-                <nav class="nav">
+    <body>
+        <div>
+            <header class="header">
+                <div class="container">
+                    <nav class="nav">
                         <a href="/" class="nav-brand">
                             <i class="fas fa-cube"></i> QuestPro
                         </a>
                         <button class="mobile-toggle" aria-label="Toggle Menu">
                             <i class="fas fa-bars"></i>
                         </button>
-                    <div class="nav-menu">
-                        <a href="/" class="nav-link active">Home</a>
-                        <a href="/explore" class="nav-link">Explore</a>
-                        <a href="/about" class="nav-link">About</a>
-                        <a href="/contact" class="nav-link">Contact</a>
-                        
-                            
+                        <div class="nav-menu">
+                            <a href="/" class="nav-link active">Home</a>
+                            <a href="/explore" class="nav-link">Explore</a>
+                            <a href="/about" class="nav-link">About</a>
+                            <a href="/contact" class="nav-link">Contact</a>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <section class="hero">
+                <div class="video-container">
+                    <video autoplay muted loop>
+                        <source
+                            src="https://www.shutterstock.com/shutterstock/videos/1094501503/preview/stock-footage-change-career-and-job-search-on-laptop-by-corporate-employee-working-in-office-looking-for-a-new.webm"
+                            type="video/mp4"
+                        />
+                    </video>
+                </div>
+                <div class="hero-text">
+                    <h2>Your Career Journey Starts Here</h2>
+                    <p>Connect with top employers and find your dream job</p>
+                    <a href="/explore" class="btn">Explore Opportunities</a>
+                </div>
+            </section>
+
+            <section class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-search feature-icon"></i>
+                    <h3>Smart Job Matching</h3>
+                    <p>
+                        Our AI-powered platform matches you with the perfect
+                        opportunities based on your skills and preferences.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-briefcase feature-icon"></i>
+                    <h3>Career Growth</h3>
+                    <p>
+                        Access resources and tools to develop your skills and
+                        advance your career journey.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-handshake feature-icon"></i>
+                    <h3>Direct Connections</h3>
+                    <p>
+                        Connect directly with hiring managers and recruiters
+                        from top companies.
+                    </p>
+                </div>
+            </section>
+
+            <section class="jobs-section">
+                <h2>Explore Career Categories</h2>
+                <div class="job-categories">
+                    <div class="category-card">
+                        <h3>Technology</h3>
+                        <p>1,234 Jobs Available</p>
                     </div>
-                </nav>
-            </div>
-        </header>
-
-        <section class="hero">
-            <div class="video-container">
-                <video autoplay muted loop>
-                    <source src="https://www.shutterstock.com/shutterstock/videos/1094501503/preview/stock-footage-change-career-and-job-search-on-laptop-by-corporate-employee-working-in-office-looking-for-a-new.webm" type="video/mp4">
-                </video>
-            </div>
-            <div class="hero-text">
-                <h2>Your Career Journey Starts Here</h2>
-                <p>Connect with top employers and find your dream job</p>
-                <a href="/explore" class="btn">Explore Opportunities</a>
-            </div>
-        </section>
-
-        <section class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-search feature-icon"></i>
-                <h3>Smart Job Matching</h3>
-                <p>Our AI-powered platform matches you with the perfect opportunities based on your skills and preferences.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-briefcase feature-icon"></i>
-                <h3>Career Growth</h3>
-                <p>Access resources and tools to develop your skills and advance your career journey.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-handshake feature-icon"></i>
-                <h3>Direct Connections</h3>
-                <p>Connect directly with hiring managers and recruiters from top companies.</p>
-            </div>
-        </section>
-
-        <section class="jobs-section">
-            <h2>Explore Career Categories</h2>
-            <div class="job-categories">
-                <div class="category-card">
-                    <h3>Technology</h3>
-                    <p>1,234 Jobs Available</p>
-                </div>
-                <div class="category-card">
-                    <h3>Finance</h3>
-                    <p>867 Jobs Available</p>
-                </div>
-                <div class="category-card">
-                    <h3>Marketing</h3>
-                    <p>645 Jobs Available</p>
-                </div>
-                <div class="category-card">
-                    <h3>Healthcare</h3>
-                    <p>789 Jobs Available</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <div  class="stats-grid">
-                <div class="stat-item">
-                    <h3>10K+</h3>
-                    <p>Active Jobs</p>
-                </div>
-                <div class="stat-item">
-                    <h3>5K+</h3>
-                    <p>Companies</p>
-                </div>
-                <div class="stat-item">
-                    <h3>1M+</h3>
-                    <p>Job Seekers</p>
-                </div>
-                <div class="stat-item">
-                    <h3>95%</h3>
-                    <p>Success Rate</p>
-                </div>
-            </div>
-        </section>
-        <section class="testimonials">
-            <div class="test-container">
-                <h2 class="h2-testimonial">Success Stories</h2>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card animate-fadein">
-                        <img src="https://media.istockphoto.com/id/2151279555/photo/business-woman-thinking-and-laptop-for-online-research-in-office-and-information-on-digital.webp?a=1&b=1&s=612x612&w=0&k=20&c=vdIzqNQ8zAaHIrMz1zHIAqQPGoXUBuRXjgPoNMmxD3Y=" alt="Sarah Johnson">
-                        <blockquote>"QuestPro helped me find my perfect job in just 2 weeks!"</blockquote>
-                        <p class="author">- Sarah Johnson, Marketing Manager</p>
+                    <div class="category-card">
+                        <h3>Finance</h3>
+                        <p>867 Jobs Available</p>
                     </div>
-                    <div class="testimonial-card animate-fadein">
-                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyc29ufGVufDB8fDB8fHww" alt="Michael Chen">
-                        <blockquote>"The career resources helped me level up my skills dramatically."</blockquote>
-                        <p class="author">- Michael Chen, Software Developer</p>
+                    <div class="category-card">
+                        <h3>Marketing</h3>
+                        <p>645 Jobs Available</p>
+                    </div>
+                    <div class="category-card">
+                        <h3>Healthcare</h3>
+                        <p>789 Jobs Available</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About QuestPro</h3>
-                    <ul class="footer-links">
-                        <li><a href="/about">About Us</a></li>
-                        
-                    </ul>
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>10K+</h3>
+                        <p>Active Jobs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>5K+</h3>
+                        <p>Companies</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1M+</h3>
+                        <p>Job Seekers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>95%</h3>
+                        <p>Success Rate</p>
+                    </div>
                 </div>
+            </section>
 
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <ul class="footer-links">
-                        <li><a href="/contact">Contact Us</a></li>
-                        <li><a href="/contact">Support</a></li>
-                        <li><a href="/contact">Feedback</a></li>
-                    </ul>
-                    <div class="social-links">
-                        <a href="https://x.com/gogo1_onyango" target="_blank" rel="noopener noreferrer">
+            <section class="testimonials">
+                <div class="container">
+                    <h2>Success Stories</h2>
+                    <div class="testimonial-slider">
+                        <div class="slider-wrapper">
+                            <div class="testimonial-card">
+                                <img
+                                    src="https://media.istockphoto.com/id/2151279555/photo/business-woman-thinking-and-laptop-for-online-research-in-office-and-information-on-digital.webp?a=1&b=1&s=612x612&w=0&k=20&c=vdIzqNQ8zAaHIrMz1zHIAqQPGoXUBuRXjgPoNMmxD3Y="
+                                    alt="Sarah Johnson"
+                                />
+                                <blockquote>
+                                    "QuestPro helped me find my perfect job in
+                                    just 2 weeks! The platform's matching
+                                    algorithm is incredibly accurate."
+                                </blockquote>
+                                <p class="author">
+                                    - Sarah Johnson, Marketing Manager
+                                </p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img
+                                    src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyc29ufGVufDB8fDB8fHww"
+                                    alt="Michael Chen"
+                                />
+                                <blockquote>
+                                    "The career resources helped me level up my
+                                    skills dramatically. I secured a 40% salary
+                                    increase after completing the recommended
+                                    courses."
+                                </blockquote>
+                                <p class="author">
+                                    - Michael Chen, Software Developer
+                                </p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img
+                                    src="https://images.unsplash.com/photo-1536416992256-1c91ce9ccdfd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyc29uJTIwYmxhY2t8ZW58MHx8MHx8fDA%3D"
+                                    alt="Emily Kerubo"
+                                />
+                                <blockquote>
+                                    "Found amazing networking opportunities
+                                    through QuestPro's platform. The community
+                                    here is incredibly supportive and
+                                    professional."
+                                </blockquote>
+                                <p class="author">
+                                    - Emily Kerubo, Product Manager
+                                </p>
+                            </div>
+                            <div class="testimonial-card">
+                                <img
+                                    src="https://media.istockphoto.com/id/1822009439/photo/business-happy-and-walking-black-man-on-city-journey-commute-trip-and-real-estate-agent-smile.webp?a=1&b=1&s=612x612&w=0&k=20&c=-QPvRxp9nIBn5YI7jTu34L27u9DIR-lWPUZDZMR9yWg="
+                                    alt="David Otieno"
+                                />
+                                <blockquote>
+                                    "QuestPro's interview preparation tools were
+                                    game-changing. Landed my dream job at a top
+                                    tech company after just one month."
+                                </blockquote>
+                                <p class="author">
+                                    - David Otieno, Data Scientist
+                                </p>
+                            </div>
+                        </div>
+                        <button class="slider-arrow slider-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>About QuestPro</h3>
+                        <ul class="footer-links">
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
+                            <li><a href="/terms">Terms of Service</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>Connect With Us</h3>
+                        <ul class="footer-links">
+                            <li><a href="/contact">Contact Us</a></li>
+                            <li><a href="/contact">Support</a></li>
+                            <li><a href="/contact">Feedback</a></li>
+                        </ul>
+                    </div>
+                    
+                               
+                    <div class="social-links">                        
+                            <h3>Follow Us:</h3>       
+                        <a
+                            href="https://x.com/gogo1_onyango"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://linkedin.com/in/maxwell-gogo-2015a0231/" target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://linkedin.com/in/maxwell-gogo-2015a0231/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://instagram.com/gogo.maxwell22" target="_blank" rel="noopener noreferrer">
+                        <a
+                            href="https://instagram.com/gogo.maxwell22"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/terms">Terms of Service</a></li>
-                    </ul>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p>
+                            &copy; <span id="copyright-year"></span> QuestPro.
+                            All rights reserved.
+                        </p>
+                 
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="container">
-                    <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
-                    </div>
-                            </div>
-                        </footer>
-                    </div>
-                    <script>
-                        const darkModeToggle = document.getElementById('darkModeToggle');
-                        darkModeToggle.addEventListener('click', () => {
-                            document.body.classList.toggle('dark-mode');
-                            darkModeToggle.classList.toggle('fa-moon');
-                            darkModeToggle.classList.toggle('fa-sun');
-                        });
-                        // Chatbase Integration
-                        (function(){
-                            if(!window.chatbase||window.chatbase("getState")!=="initialized"){
-                                window.chatbase=(...arguments)=>{
-                                    if(!window.chatbase.q){window.chatbase.q=[]}
-                                    window.chatbase.q.push(arguments)
-                                };
-                                window.chatbase=new Proxy(window.chatbase,{
-                                    get(target,prop){
-                                        if(prop==="q"){return target.q}
-                                        return(...args)=>target(prop,...args)
-                                    }
-                                })
-                            }
-                            const onLoad=function(){
-                                const script=document.createElement("script");
-                                script.src="https://www.chatbase.co/embed.min.js";
-                                script.id="jf1k_UpKmxBLQPDPrYlz-";
-                                script.domain="www.chatbase.co";
-                                document.body.appendChild(script)
-                            };
-                            if(document.readyState==="complete"){
-                                onLoad()
-                            }else{
-                                window.addEventListener("load",onLoad)
-                            }
-                        })();
+            </footer>
+        </div>
+        <script>
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector(".mobile-toggle");
+            const navMenu = document.querySelector(".nav-menu");
+            const menuIcon = mobileToggle.querySelector("i");
 
-                        // Scroll effect for header
-                        window.addEventListener('scroll', () => {
-                            const header = document.querySelector('header');
-                            if (window.scrollY > 50) {
-                                header.classList.add('scrolled');
+            mobileToggle.addEventListener("click", () => {
+                navMenu.classList.toggle("active");
+                menuIcon.classList.toggle("fa-bars");
+                menuIcon.classList.toggle("fa-times");
+            });
+            class TestimonialSlider {
+                constructor() {
+                    this.sliderWrapper =
+                        document.querySelector(".slider-wrapper");
+                    this.slides =
+                        document.querySelectorAll(".testimonial-card");
+                    this.prevButton = document.querySelector(".slider-prev");
+                    this.nextButton = document.querySelector(".slider-next");
+                    this.dotsContainer = document.querySelector(".slider-dots");
+
+                    this.currentSlide = 0;
+                    this.totalSlides = this.slides.length;
+                    this.slideWidth = 100; // percentage
+                    this.autoplayInterval = 5000; // 5 seconds
+                    this.autoplayTimeout = null;
+
+                    this.init();
+                }
+
+                init() {
+                    // Create dots
+                    this.slides.forEach((_, index) => {
+                        const dot = document.createElement("div");
+                        dot.classList.add("dot");
+                        dot.addEventListener("click", () =>
+                            this.goToSlide(index),
+                        );
+                        this.dotsContainer.appendChild(dot);
+                    });
+
+                    // Set initial state
+                    this.updateSlider();
+                    this.startAutoplay();
+
+                    // Add event listeners
+                    this.prevButton.addEventListener("click", () => {
+                        this.stopAutoplay();
+                        this.prevSlide();
+                        this.startAutoplay();
+                    });
+
+                    this.nextButton.addEventListener("click", () => {
+                        this.stopAutoplay();
+                        this.nextSlide();
+                        this.startAutoplay();
+                    });
+
+                    // Touch events
+                    let touchStartX = 0;
+                    let touchEndX = 0;
+
+                    this.sliderWrapper.addEventListener(
+                        "touchstart",
+                        (e) => {
+                            touchStartX = e.touches[0].clientX;
+                            this.stopAutoplay();
+                        },
+                        { passive: true },
+                    );
+
+                    this.sliderWrapper.addEventListener(
+                        "touchmove",
+                        (e) => {
+                            touchEndX = e.touches[0].clientX;
+                        },
+                        { passive: true },
+                    );
+
+                    this.sliderWrapper.addEventListener("touchend", () => {
+                        const difference = touchStartX - touchEndX;
+                        if (Math.abs(difference) > 50) {
+                            // Minimum swipe distance
+                            if (difference > 0) {
+                                this.nextSlide();
                             } else {
-                                header.classList.remove('scrolled');
+                                this.prevSlide();
                             }
-                        });
+                        }
+                        this.startAutoplay();
+                    });
 
-                        // Mobile menu functionality
-                        const mobileToggle = document.querySelector('.mobile-toggle');
-                        const navMenu = document.querySelector('.nav-menu');
-                        const menuIcon = mobileToggle.querySelector('i');
+                    // Pause autoplay on hover
+                    this.sliderWrapper.addEventListener("mouseenter", () =>
+                        this.stopAutoplay(),
+                    );
+                    this.sliderWrapper.addEventListener("mouseleave", () =>
+                        this.startAutoplay(),
+                    );
 
-                        mobileToggle.addEventListener('click', () => {
-                            navMenu.classList.toggle('active');
+                    // Handle visibility change
+                    document.addEventListener("visibilitychange", () => {
+                        if (document.hidden) {
+                            this.stopAutoplay();
+                        } else {
+                            this.startAutoplay();
+                        }
+                    });
+                }
 
-                            // Toggle menu icon
-                            if (menuIcon.classList.contains('fa-bars')) {
-                                menuIcon.classList.remove('fa-bars');
-                                menuIcon.classList.add('fa-times');
-                                mobileToggle.setAttribute('aria-expanded', 'true');
-                            } else {
-                                menuIcon.classList.remove('fa-times');
-                                menuIcon.classList.add('fa-bars');
-                                mobileToggle.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                        document.addEventListener('click', (e) => {
-                            if (window.innerWidth <= 768) {
-                                if (!e.target.closest('.nav') && navMenu.classList.contains('active')) {
-                                    navMenu.classList.remove('active');
-                                    menuIcon.classList.remove('fa-times');
-                                    menuIcon.classList.add('fa-bars');
-                                    mobileToggle.setAttribute('aria-expanded', 'false');
-                                }
-                            }
-                        });
-                        // Set copyright year
-                        document.getElementById("copyright-year").textContent = new Date().getFullYear();
-                        
-                        
-                        </script>
-                    </body>
-                    </html>
-                
+                updateSlider() {
+                    // Update transform
+                    this.sliderWrapper.style.transform = `translateX(-${this.currentSlide * this.slideWidth}%)`;
+
+                    // Update dots
+                    const dots = this.dotsContainer.querySelectorAll(".dot");
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle(
+                            "active",
+                            index === this.currentSlide,
+                        );
+                    });
+
+                    // Update slide visibility
+                    this.slides.forEach((slide, index) => {
+                        slide.classList.toggle(
+                            "active",
+                            index === this.currentSlide,
+                        );
+                    });
+                }
+
+                goToSlide(index) {
+                    this.currentSlide = index;
+                    this.updateSlider();
+                }
+
+                nextSlide() {
+                    this.currentSlide =
+                        (this.currentSlide + 1) % this.totalSlides;
+                    this.updateSlider();
+                }
+
+                prevSlide() {
+                    this.currentSlide =
+                        (this.currentSlide - 1 + this.totalSlides) %
+                        this.totalSlides;
+                    this.updateSlider();
+                }
+
+                startAutoplay() {
+                    this.stopAutoplay();
+                    this.autoplayTimeout = setInterval(
+                        () => this.nextSlide(),
+                        this.autoplayInterval,
+                    );
+                }
+
+                stopAutoplay() {
+                    if (this.autoplayTimeout) {
+                        clearInterval(this.autoplayTimeout);
+                        this.autoplayTimeout = null;
+                    }
+                }
+            }
+
+            // Initialize slider
+            document.addEventListener("DOMContentLoaded", () => {
+                new TestimonialSlider();
+            });
+
+            // Set copyright year
+            document.getElementById("copyright-year").textContent =
+                new Date().getFullYear();
+
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector("header");
+                if (window.scrollY > 50) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
+        </script>
+    </body>
+</html>

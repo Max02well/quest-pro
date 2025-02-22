@@ -1,19 +1,21 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!doctype html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Explore Jobs - QuestPro</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
         <style>
-            /* (CSS remains unchanged from original) */
             :root {
                 --primary-color: #164773;
                 --primary-light: #1e5c94;
                 --primary-dark: #0d2b47;
-                --secondary-color: #4B4952;
-                --accent-color: #2ecc71;   
-                --text-light: #ffffff;       
+                --secondary-color: #4b4952;
+                --accent-color: #2ecc71;
+                --text-light: #ffffff;
                 --text-dark: #333333;
                 --spacing-base: 1rem;
                 --transition: all 0.3s ease;
@@ -21,77 +23,104 @@
                 --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
                 --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
             }
+            .dark-mode {
+                --primary-color: #000;
+                --primary-light: #000;
+                --primary-dark: #000;
+                --secondary-color: #fff;
+                --text-dark: #ffffff;
+                --text-light: #ffffff;
+                --accent-color: #2ecc71;
+                background-color: #333333;
+            }
 
+            .dark-mode .feature-card,
+            .dark-mode .testimonial-card {
+                background: var(--primary-light);
+                color: var(--text-light);
+            }
+            .dark-mode .h2-testimonial {
+                color: var(--text-light);
+            }
+
+            .dark-mode .stats-section {
+                background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            }
+
+            .dark-mode .testimonials {
+                background-color: #0f0f0f;
+            }
+
+            .dark-mode #darkModeToggle {
+                color: #ffd700;
+            }
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
-
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
                 line-height: 1.6;
                 background-color: #f8f9fa;
-                color: var(--text-dark);
-                padding-top: 80px;
             }
-
-
             .container {
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 0 15px;
             }
 
-            /* Header Styles */
             .header {
                 position: fixed;
                 width: 100%;
                 top: 0;
                 background-color: var(--primary-color);
-                box-shadow: var(--shadow-sm);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
-                transition: var(--transition);
+                transition: all 0.3s ease;
             }
-
             .nav {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 15px 0;
             }
-
             .nav-brand {
                 font-size: 1.5rem;
                 font-weight: 700;
-                color: var(--text-light);
+                color: #fff;
                 text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
             }
-
             .nav-brand i {
                 color: var(--accent-color);
             }
-
             .nav-menu {
                 display: flex;
                 align-items: center;
                 gap: 20px;
             }
-
             .nav-link {
                 color: var(--text-light);
                 text-decoration: none;
                 font-weight: 500;
                 position: relative;
-                transition: var(--transition);
+                transition: color 0.3s ease;
             }
 
-            .nav-link:hover, 
+            .nav-link:hover,
             .nav-link.active {
                 color: var(--accent-color);
+            }
+
+            .nav-link.active::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--accent-color);
             }
 
             .mobile-toggle {
@@ -103,15 +132,19 @@
                 color: var(--text-light);
             }
 
-            /* Search Section */
             .search-section {
-                background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+                background: linear-gradient(
+                    135deg,
+                    var(--primary-color),
+                    var(--primary-dark)
+                );
                 padding: 4rem 0;
+                padding-top: 5rem;
                 margin-bottom: 3rem;
             }
 
             .search-bar {
-                background: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.95);
                 padding: 2rem;
                 border-radius: 12px;
                 box-shadow: var(--shadow-lg);
@@ -138,6 +171,7 @@
             .search-input:focus {
                 outline: none;
                 border-color: var(--accent-color);
+                box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
             }
 
             .filter-section {
@@ -146,12 +180,12 @@
                 gap: 1rem;
             }
 
-            /* Job Listings */
             .job-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 2rem;
-                padding: 2rem 0;
+                padding: rem 0;
+                min-height: 400px; /* Ensures consistent height even with no results */
             }
 
             .job-card {
@@ -161,6 +195,8 @@
                 box-shadow: var(--shadow-sm);
                 transition: var(--transition);
                 border: 1px solid rgba(0, 0, 0, 0.05);
+                display: flex;
+                flex-direction: column;
             }
 
             .job-card:hover {
@@ -192,6 +228,11 @@
                 color: var(--primary-color);
             }
 
+            .company-name {
+                font-weight: 500;
+                color: var(--secondary-color);
+            }
+
             .job-details {
                 display: flex;
                 flex-wrap: wrap;
@@ -205,6 +246,9 @@
                 align-items: center;
                 gap: 0.5rem;
                 font-size: 0.9rem;
+                background-color: #f8f9fa;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
             }
 
             .btn {
@@ -220,6 +264,7 @@
                 transition: var(--transition);
                 border: none;
                 cursor: pointer;
+                margin-top: auto;
             }
 
             .btn:hover {
@@ -228,12 +273,12 @@
                 box-shadow: var(--shadow-md);
             }
 
-            /* Pagination */
             .pagination {
                 display: flex;
                 justify-content: center;
                 gap: 0.5rem;
                 margin: 3rem 0;
+                flex-wrap: wrap;
             }
 
             .page-btn {
@@ -244,6 +289,11 @@
                 background: white;
                 cursor: pointer;
                 transition: var(--transition);
+                font-weight: 500;
+                min-width: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .page-btn.active,
@@ -251,29 +301,145 @@
                 background-color: var(--primary-color);
                 color: var(--text-light);
             }
-            /* Footer */
-             footer { background-color: var(--primary-dark); color: var(--text-light); padding: 4rem 0; margin-top: 4rem; } 
-            .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
-            .footer-links { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 0; } 
-            .footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
-            .footer-links a:hover { color: var(--accent-color); } 
-            .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; }
-            .social-links a { color: var(--text-light); font-size: 1.5rem; transition: var(--transition); } .social-links a:hover { color: var(--accent-color); transform: translateY(-2px); }
-            @media (max-width: 768px) { body { padding-top: 70px; } .mobile-toggle { display: block; }.nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--primary-color); flex-direction: column; padding: 2rem; transition: var(--transition); z-index: 999; }.nav-menu.active { left: 0; } .nav-link { font-size: 1.2rem; padding: 1rem; }.search-inputs { grid-template-columns: 1fr; } .job-grid { grid-template-columns: 1fr; } }
 
-            /* Footer */
-             footer { background-color: var(--primary-dark); color: var(--text-light); padding: 4rem 0; margin-top: 4rem; }
-            .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
-            .footer-links { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 0; } 
-            .footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
-            .footer-links a:hover { color: var(--accent-color); } 
-            .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; }
-            .social-links a { color: var(--text-light); font-size: 1.5rem; transition: var(--transition); } .social-links a:hover { color: var(--accent-color); transform: translateY(-2px); }
-            
-            @media (max-width: 768px) { body { padding-top: 70px; } .mobile-toggle { display: block; }.nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--primary-color); flex-direction: column; padding: 2rem; transition: var(--transition); z-index: 999; }.nav-menu.active { left: 0; } .nav-link { font-size: 1.2rem; padding: 1rem; }.search-inputs { grid-template-columns: 1fr; } .job-grid { grid-template-columns: 1fr; } }
+            .footer {
+                background-color: var(--primary-dark);
+                color: var(--text-light);
+                padding: 4rem 0;
+                margin-top: 4rem;
+            }
 
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                text-align: center;
+            }
 
-            
+            .footer-links {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-bottom: 2rem;
+                padding: 0;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                color: var(--text-light);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-color);
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .social-links a {
+                color: var(--text-light);
+                font-size: 1.5rem;
+                transition: var(--transition);
+            }
+
+            .social-links a:hover {
+                color: var(--accent-color);
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding-top: 70px;
+                }
+
+                .mobile-toggle {
+                    display: block;
+                }
+
+                .nav-menu {
+                    position: fixed;
+                    top: 70px;
+                    left: -100%;
+                    width: 100%;
+                    height: calc(100vh - 70px);
+                    background: var(--primary-color);
+                    flex-direction: column;
+                    padding: 2rem;
+                    transition: var(--transition);
+                    z-index: 999;
+                }
+
+                .nav-menu.active {
+                    left: 0;
+                }
+
+                .nav-link {
+                    font-size: 1.2rem;
+                    padding: 1rem;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .search-inputs {
+                    grid-template-columns: 1fr;
+                }
+
+                .job-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .footer-links {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            }
+
+            /* Loading animation */
+            .loading {
+                display: none;
+                justify-content: center;
+                align-items: center;
+                min-height: 200px;
+            }
+
+            .loading.active {
+                display: flex;
+            }
+
+            .loading::after {
+                content: "";
+                width: 50px;
+                height: 50px;
+                border: 5px solid #f3f3f3;
+                border-top: 5px solid var(--accent-color);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            .no-results {
+                text-align: center;
+                padding: 3rem;
+                color: var(--secondary-color);
+                display: none;
+            }
+
+            .no-results.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -301,9 +467,21 @@
                 <div class="container">
                     <div class="search-bar">
                         <div class="search-inputs">
-                            <input type="text" id="keyword-input" class="search-input" placeholder="Job title or keyword...">
-                            <input type="text" id="location-input" class="search-input" placeholder="Location...">
-                            <button class="btn" id="search-button">Search Jobs</button>
+                            <input
+                                type="text"
+                                id="keyword-input"
+                                class="search-input"
+                                placeholder="Job title or keyword..."
+                            />
+                            <input
+                                type="text"
+                                id="location-input"
+                                class="search-input"
+                                placeholder="Location..."
+                            />
+                            <button class="btn" id="search-button">
+                                <i class="fas fa-search"></i> Search Jobs
+                            </button>
                         </div>
                         <div class="filter-section">
                             <select class="search-input" id="job-type-filter">
@@ -333,18 +511,18 @@
             </section>
 
             <div class="container">
-                <div class="job-grid" id="job-grid"></div>
-
-                <div class="pagination">
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <button class="page-btn">Next</button>
+                <div class="loading" id="loading"></div>
+                <div class="no-results" id="no-results">
+                    <i class="fas fa-search fa-3x"></i>
+                    <h3>No jobs found</h3>
+                    <p>Try adjusting your search criteria</p>
                 </div>
+                <div class="job-grid" id="job-grid"></div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </main>
 
-        <footer>
+        <footer class="footer">
             <div class="footer-content container">
                 <ul class="footer-links">
                     <li><a href="/about">About</a></li>
@@ -353,25 +531,53 @@
                     <li><a href="/terms">Terms of Service</a></li>
                 </ul>
                 <div class="social-links">
-                    <a href="https://x.com/gogo1_onyango" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://x.com/gogo1_onyango"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://linkedin.com/in/maxwell-gogo-2015a0231/" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://linkedin.com/in/maxwell-gogo-2015a0231/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://instagram.com/gogo.maxwell22" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://instagram.com/gogo.maxwell22"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+                    <p>
+                        &copy; <span id="copyright-year"></span> QuestPro. All
+                        rights reserved.
+                    </p>
                 </div>
             </div>
         </footer>
 
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Job data and rendering
+            document.addEventListener("DOMContentLoaded", () => {
+                // Elements
+                const jobGrid = document.getElementById("job-grid");
+                const searchButton = document.getElementById("search-button");
+                const loadingElement = document.getElementById("loading");
+                const noResultsElement = document.getElementById("no-results");
+                const paginationContainer =
+                    document.getElementById("pagination");
+
+                // Constants
+                const JOBS_PER_PAGE = 3;
+                let currentPage = 1;
+                let filteredJobs = [];
+
+                // Extended job data
                 const jobs = [
                     {
                         id: 1,
@@ -382,7 +588,8 @@
                         experience: "Senior Level",
                         salaryRange: "Ksh.100k - 150k",
                         salary: "Ksh.120k - 150k",
-                        description: "Join our team to build innovative solutions using cutting-edge technologies."
+                        description:
+                            "Join our team to build innovative solutions using cutting-edge technologies.",
                     },
                     {
                         id: 2,
@@ -393,26 +600,105 @@
                         experience: "Entry Level",
                         salaryRange: "Ksh.50k - 100k",
                         salary: "Ksh.50k - 70k",
-                        description: "Join our team to expand your marketing skills and drive sales growth."
-                    }
+                        description:
+                            "Join our team to expand your marketing skills and drive sales growth.",
+                    },
+                    {
+                        id: 3,
+                        title: "Data Scientist",
+                        company: "Analytics Pro",
+                        location: "Nairobi, Kenya",
+                        type: "Full-time",
+                        experience: "Mid Level",
+                        salaryRange: "Ksh.100k - 150k",
+                        salary: "Ksh.130k - 150k",
+                        description:
+                            "Looking for a talented data scientist to join our growing analytics team.",
+                    },
+                    {
+                        id: 4,
+                        title: "UI/UX Designer",
+                        company: "Creative Hub",
+                        location: "Mombasa, Kenya",
+                        type: "Remote",
+                        experience: "Mid Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.80k - 100k",
+                        description:
+                            "Create beautiful and intuitive user interfaces for our digital products.",
+                    },
+                    {
+                        id: 5,
+                        title: "Project Manager",
+                        company: "BuildTech Solutions",
+                        location: "Eldoret, Kenya",
+                        type: "Full-time",
+                        experience: "Senior Level",
+                        salaryRange: "Ksh.150k+",
+                        salary: "Ksh.160k - 200k",
+                        description:
+                            "Lead and manage multiple construction projects across the region.",
+                    },
+                    {
+                        id: 6,
+                        title: "Content Writer",
+                        company: "Digital Media Kenya",
+                        location: "Remote",
+                        type: "Contract",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.45k - 60k",
+                        description:
+                            "Create engaging content for various digital platforms and social media.",
+                    },
+                    {
+                        id: 7,
+                        title: "Sales Representative",
+                        company: "TechGrowth Ltd",
+                        location: "Nakuru, Kenya",
+                        type: "Full-time",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.50k - 80k",
+                        description:
+                            "Drive sales growth in the region through direct client engagement.",
+                    },
                 ];
 
-                const jobGrid = document.getElementById('job-grid');
-                const searchButton = document.getElementById('search-button');
-
                 const filters = {
-                    keyword: document.getElementById('keyword-input'),
-                    location: document.getElementById('location-input'),
-                    jobType: document.getElementById('job-type-filter'),
-                    experience: document.getElementById('experience-filter'),
-                    salary: document.getElementById('salary-filter')
+                    keyword: document.getElementById("keyword-input"),
+                    location: document.getElementById("location-input"),
+                    jobType: document.getElementById("job-type-filter"),
+                    experience: document.getElementById("experience-filter"),
+                    salary: document.getElementById("salary-filter"),
                 };
 
-                function renderJobs(jobsArray) {
-                    jobGrid.innerHTML = '';
-                    jobsArray.forEach(job => {
-                        const jobCard = document.createElement('div');
-                        jobCard.className = 'job-card';
+                function showLoading() {
+                    loadingElement.classList.add("active");
+                    jobGrid.style.display = "none";
+                    noResultsElement.classList.remove("active");
+                }
+
+                function hideLoading() {
+                    loadingElement.classList.remove("active");
+                    jobGrid.style.display = "grid";
+                }
+
+                function renderJobs(jobsToRender) {
+                    jobGrid.innerHTML = "";
+
+                    if (jobsToRender.length === 0) {
+                        noResultsElement.classList.add("active");
+                        jobGrid.style.display = "none";
+                        return;
+                    }
+
+                    noResultsElement.classList.remove("active");
+                    jobGrid.style.display = "grid";
+
+                    jobsToRender.forEach((job) => {
+                        const jobCard = document.createElement("div");
+                        jobCard.className = "job-card";
                         jobCard.innerHTML = `
                             <h3 class="job-title">${job.title}</h3>
                             <div class="company-info">
@@ -433,52 +719,153 @@
                     });
                 }
 
+                function updatePagination() {
+                    const totalPages = Math.ceil(
+                        filteredJobs.length / JOBS_PER_PAGE,
+                    );
+                    paginationContainer.innerHTML = "";
+
+                    if (totalPages <= 1) {
+                        return;
+                    }
+
+                    // Previous button
+                    if (currentPage > 1) {
+                        const prevBtn = createPaginationButton(
+                            "Previous",
+                            currentPage - 1,
+                        );
+                        paginationContainer.appendChild(prevBtn);
+                    }
+
+                    // Page numbers
+                    for (let i = 1; i <= totalPages; i++) {
+                        const pageBtn = createPaginationButton(i, i);
+                        if (i === currentPage) {
+                            pageBtn.classList.add("active");
+                        }
+                        paginationContainer.appendChild(pageBtn);
+                    }
+
+                    // Next button
+                    if (currentPage < totalPages) {
+                        const nextBtn = createPaginationButton(
+                            "Next",
+                            currentPage + 1,
+                        );
+                        paginationContainer.appendChild(nextBtn);
+                    }
+                }
+
+                function createPaginationButton(text, pageNumber) {
+                    const button = document.createElement("button");
+                    button.textContent = text;
+                    button.className = "page-btn";
+                    button.addEventListener("click", () => {
+                        currentPage = pageNumber;
+                        const startIndex = (currentPage - 1) * JOBS_PER_PAGE;
+                        const endIndex = startIndex + JOBS_PER_PAGE;
+
+                        showLoading();
+                        setTimeout(() => {
+                            renderJobs(
+                                filteredJobs.slice(startIndex, endIndex),
+                            );
+                            updatePagination();
+                            hideLoading();
+                            jobGrid.scrollIntoView({ behavior: "smooth" });
+                        }, 500); // Simulated loading delay
+                    });
+                    return button;
+                }
+
                 function performSearch() {
+                    showLoading();
+
                     const searchCriteria = {
                         keyword: filters.keyword.value.toLowerCase(),
                         location: filters.location.value.toLowerCase(),
                         jobType: filters.jobType.value,
                         experience: filters.experience.value,
-                        salaryRange: filters.salary.value
+                        salaryRange: filters.salary.value,
                     };
 
-                    const filteredJobs = jobs.filter(job => {
-                        const matchesKeyword = job.title.toLowerCase().includes(searchCriteria.keyword) ||
-                            job.description.toLowerCase().includes(searchCriteria.keyword);
-                        const matchesLocation = job.location.toLowerCase().includes(searchCriteria.location);
-                        const matchesJobType = searchCriteria.jobType ? job.type === searchCriteria.jobType : true;
-                        const matchesExperience = searchCriteria.experience ? job.experience === searchCriteria.experience : true;
-                        const matchesSalary = searchCriteria.salaryRange ? job.salaryRange === searchCriteria.salaryRange : true;
+                    setTimeout(() => {
+                        filteredJobs = jobs.filter((job) => {
+                            const matchesKeyword =
+                                job.title
+                                    .toLowerCase()
+                                    .includes(searchCriteria.keyword) ||
+                                job.description
+                                    .toLowerCase()
+                                    .includes(searchCriteria.keyword);
+                            const matchesLocation = job.location
+                                .toLowerCase()
+                                .includes(searchCriteria.location);
+                            const matchesJobType = searchCriteria.jobType
+                                ? job.type === searchCriteria.jobType
+                                : true;
+                            const matchesExperience = searchCriteria.experience
+                                ? job.experience === searchCriteria.experience
+                                : true;
+                            const matchesSalary = searchCriteria.salaryRange
+                                ? job.salaryRange === searchCriteria.salaryRange
+                                : true;
 
-                        return matchesKeyword && matchesLocation && matchesJobType && matchesExperience && matchesSalary;
-                    });
+                            return (
+                                matchesKeyword &&
+                                matchesLocation &&
+                                matchesJobType &&
+                                matchesExperience &&
+                                matchesSalary
+                            );
+                        });
 
-                    renderJobs(filteredJobs);
+                        currentPage = 1;
+                        renderJobs(filteredJobs.slice(0, JOBS_PER_PAGE));
+                        updatePagination();
+                        hideLoading();
+                    }, 500); // Simulated loading delay
                 }
 
                 // Event listeners
-                searchButton.addEventListener('click', performSearch);
-                document.querySelectorAll('.filter-section select').forEach(select => {
-                    select.addEventListener('change', performSearch);
-                });
+                searchButton.addEventListener("click", performSearch);
+
+                document
+                    .querySelectorAll(".filter-section select")
+                    .forEach((select) => {
+                        select.addEventListener("change", performSearch);
+                    });
 
                 // Mobile menu toggle
-                const mobileToggle = document.querySelector('.mobile-toggle');
-                const navMenu = document.querySelector('.nav-menu');
-                const menuIcon = mobileToggle.querySelector('i');
+                const mobileToggle = document.querySelector(".mobile-toggle");
+                const navMenu = document.querySelector(".nav-menu");
+                const menuIcon = mobileToggle.querySelector("i");
 
-                mobileToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    menuIcon.classList.toggle('fa-bars');
-                    menuIcon.classList.toggle('fa-times');
+                mobileToggle.addEventListener("click", () => {
+                    navMenu.classList.toggle("active");
+                    menuIcon.classList.toggle("fa-bars");
+                    menuIcon.classList.toggle("fa-times");
                 });
 
-                // Initial render
-                renderJobs(jobs);
+                // Handle form submission on enter key
+                document.querySelectorAll(".search-input").forEach((input) => {
+                    input.addEventListener("keypress", (e) => {
+                        if (e.key === "Enter") {
+                            performSearch();
+                        }
+                    });
+                });
 
-                // Copyright year
-                document.getElementById('copyright-year').textContent = new Date().getFullYear();
+                // Set copyright year
+                document.getElementById("copyright-year").textContent =
+                    new Date().getFullYear();
+
+                // Initial render
+                filteredJobs = [...jobs];
+                renderJobs(filteredJobs.slice(0, JOBS_PER_PAGE));
+                updatePagination();
             });
         </script>
     </body>
-    </html>
+</html>

@@ -1,49 +1,586 @@
-{% extends 'base.html' %}
-<button class="mobile-toggle" aria-label="Toggle Menu">
-    <i class="fas fa-bars"></i>
-</button>
-{% block content %}
-    <div class="container">
-        <h1 class="mb-4">{{ job.title }}</h1>
-        <div class="row">
-            <div class="col-md-8">
-                <p class="lead">{{ job.description }}</p>
-                <h5 class="mt-4">Responsibilities</h5>
-                <ul>
-                    {% for responsibility in job.responsibilities %}
-                        <li>{{ responsibility }}</li>
-                    {% endfor %}
-                </ul>
-                <h5 class="mt-4">Skills</h5>
-                <ul>
-                    {% for skill in job.skills %}
-                        <li>{{ skill }}</li>
-                    {% endfor %}
-                </ul>
-                <h5 class="mt-4">Location</h5>
-                <p>{{ job.location }}</p>
-                <h5 class="mt-4">Company</h5>
-                <p>{{ job.company }}</p>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Job Details</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Type:</strong> {{ job.job_type }}</li>
-                            <li class="list-group-item"><strong>Experience:</strong> {{ job.experience_level }}</li>
-                            <li class="list-group-item"><strong>Salary:</strong> {{ job.salary }}</li>
-                            <li class="list-group-item"><strong>Posted:</strong> {{ job.created_at }}</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - QuestPro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color: #164773;
+            --primary-light: #1e5c94;
+            --primary-dark: #0d2b47;
+            --secondary-color: #4b4952;
+            --accent-color: #2ecc71;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --spacing-base: 1rem;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            padding-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-brand i {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .job-details-section {
+            padding: 3rem 0;
+        }
+
+        .job-header {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .job-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border-radius: 20px;
+            color: var(--secondary-color);
+        }
+
+        .job-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .job-description {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .description-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .description-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .description-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .application-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 2rem;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .job-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="nav-brand">
+                    <i class="fas fa-cube"></i> QuestPro
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/explore" class="nav-link">Explore</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="job-details-section">
+            <div class="container">
+                <div class="job-header">
+                    <div class="company-info">
+                        <div class="company-logo">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <h1 class="job-title" id="job-title">Loading...</h1>
+                            <div class="company-name" id="company-name">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="job-meta" id="job-meta">
+                        <!-- Job meta details will be populated here -->
+                    </div>
+                </div>
+
+                <div class="job-content">
+                    <div class="job-description">
+                        <h2 class="section-title">Job Description</h2>
+                        <p id="job-description">Loading...</p>
+
+                        <h2 class="section-title">Requirements</h2>
+                        <ul class="description-list">
+                            <li>Bachelor's degree in relevant field</li>
+                            <li>3+ years of experience in similar role</li>
+                            <li>Strong communication and interpersonal skills</li>
+                            <li>Problem-solving and analytical abilities</li>
+                            <li>Team player with leadership potential</li>
                         </ul>
-                        <a href="{% url 'apply' job.id %}" class="btn btn-primary mt-3">Apply Now</a>
+
+                        <h2 class="section-title">Benefits</h2>
+                        <ul class="description-list">
+                            <li>Competitive salary package</li>
+                            <li>Health insurance coverage</li>
+                            <li>Professional development opportunities</li>
+                            <li>Flexible working hours</li>
+                            <li>Modern office environment</li>
+                        </ul>
+                    </div>
+
+                    <div class="application-form">
+                        <h2 class="section-title">Apply Now</h2>
+                        <form id="job-application-form">
+                            <div class="form-group">
+                                <label class="form-label" for="full-name">Full Name</label>
+                                <input type="text" id="full-name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" id="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input type="tel" id="phone" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="resume">Resume/CV</label>
+                                <input type="file" id="resume" class="form-input" accept=".pdf,.doc,.docx" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="cover-letter">Cover Letter</label>
+                                <textarea id="cover-letter" class="form-input" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Submit Application</button>
+                        </form>
+                        <div class="success-message" id="success-message">
+                            Your application has been submitted successfully!
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <ul class="footer-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://x.com/gogo1_onyango" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://linkedin.com/in/maxwell-gogo-2015a0231/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://instagram.com/gogo.maxwell22" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-{% endblock %}
-{% block scripts %}
+    </footer>
+
     <script>
-        // Add any JavaScript functionality here
-    </script>
-{% endblock %}
+        document.addEventListener('DOMContentLoaded', () => {
+           
+            const jobs = [
+                {
+                id: 1,
+                        title: "Senior Software Engineer",
+                        company: "Tech Solutions Inc.",
+                        location: "New York",
+                        type: "Full-time",
+                        experience: "Senior Level",
+                        salaryRange: "Ksh.100k - 150k",
+                        salary: "Ksh.120k - 150k",
+                        description:
+                            "Join our team to build innovative solutions using cutting-edge technologies.",
+                    },
+                    {
+                        id: 2,
+                        title: "Marketing Trainee",
+                        company: "Setman Holdings",
+                        location: "Kisumu, Kenya",
+                        type: "Part-time",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.50k - 70k",
+                        description:
+                            "Join our team to expand your marketing skills and drive sales growth.",
+                    },
+                    {
+                        id: 3,
+                        title: "Data Scientist",
+                        company: "Analytics Pro",
+                        location: "Nairobi, Kenya",
+                        type: "Full-time",
+                        experience: "Mid Level",
+                        salaryRange: "Ksh.100k - 150k",
+                        salary: "Ksh.130k - 150k",
+                        description:
+                            "Looking for a talented data scientist to join our growing analytics team.",
+                    },
+                    {
+                        id: 4,
+                        title: "UI/UX Designer",
+                        company: "Creative Hub",
+                        location: "Mombasa, Kenya",
+                        type: "Remote",
+                        experience: "Mid Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.80k - 100k",
+                        description:
+                            "Create beautiful and intuitive user interfaces for our digital products.",
+                    },
+                    {
+                        id: 5,
+                        title: "Project Manager",
+                        company: "BuildTech Solutions",
+                        location: "Eldoret, Kenya",
+                        type: "Full-time",
+                        experience: "Senior Level",
+                        salaryRange: "Ksh.150k+",
+                        salary: "Ksh.160k - 200k",
+                        description:
+                            "Lead and manage multiple construction projects across the region.",
+                    },
+                    {
+                        id: 6,
+                        title: "Content Writer",
+                        company: "Digital Media Kenya",
+                        location: "Remote",
+                        type: "Contract",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.45k - 60k",
+                        description:
+                            "Create engaging content for various digital platforms and social media.",
+                    },
+                    {
+                        id: 7,
+                        title: "Sales Representative",
+                        company: "TechGrowth Ltd",
+                        location: "Nakuru, Kenya",
+                        type: "Full-time",
+                        experience: "Entry Level",
+                        salaryRange: "Ksh.50k - 100k",
+                        salary: "Ksh.50k - 80k",
+                        description:
+                            "Drive sales growth in the region through direct client engagement.",
+                    },
+                ];
+                const jobDetails = document.querySelector('.job-details-section');
+                const jobTitle = document.querySelector('#job-title');
+                const companyName = document.querySelector('#company-name');
+
+                const jobMeta = document.querySelector('#job-meta');
+                const jobDescription = document.querySelector('#job-description');
+                const jobRequirements = document.querySelector('#job-requirements');
+                const jobBenefits = document.querySelector('#job-benefits');
+                const jobApplicationForm = document.querySelector('#job-application-form');    
+                const successMessage = document.querySelector('#success-message');
+                const jobId = new URLSearchParams(window.location.search).get('id');
+                const job = jobs.find((job) => job.id === parseInt(jobId));
+                if (job){
+                    jobTitle.textContent = job.title;
+                    companyName.textContent = job.company;
+                    jobMeta.innerHTML = ` 
+                        <p><strong>Location:</strong> ${job.location}</p>
+                        <p><strong>Type:</strong> ${job.type}</p>
+                        <p><strong>Experience:</strong> ${job.experience}</p>
+                        <p><strong>Salary Range:</strong> ${job.salaryRange}</p>
+                        <p><strong>Salary:</strong> ${job.salary}</p>
+                    `  
+                    jobDescription.textContent = job.description;
+                    jobRequirements.innerHTML = `
+                        <h2 class="section-title">Requirements</h2>
+                        <ul class="description-list">
+                            <li>Strong problem-solving skills</li>
+                            <li>Excellent communication and collaboration skills</li>
+                            <li>Ability to work independently and as part of a team</li>
+                            <li>Ability to learn and adapt quickly</li>
+                            <li>Strong attention to detail and a passion for innovation</li>
+                            <li>Ability to work under pressure and meet deadlines</li>
+
+                             }
+
+                            </ul>
+                            
+                    
+                </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 [project]
-name = "repl-nix-workspace"
+name = "Questpro"
 version = "0.1.0"
-description = "Add your description here"
+description = "Career website developed by Maxwell Gogo"
 requires-python = ">=3.11"
 dependencies = []

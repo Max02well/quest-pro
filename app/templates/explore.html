@@ -1,0 +1,308 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Explore Jobs - QuestPro</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href= "{{ url_for('static', filename='css/style.css') }}">
+            
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="/" class="nav-brand">
+                        <i class="fas fa-cube"></i> QuestPro
+                    </a>
+                    <button class="mobile-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu">
+                        <a href="{{ url_for('main_bp.home') }}" class="nav-link"
+                            >Home</a
+                        >
+                        <a
+                            href="{{ url_for('job_bp.explore') }}"
+                            class="nav-link active"
+                            >Explore</a
+                        >
+                        <a
+                            href="{{ url_for('main_bp.about') }}"
+                            class="nav-link"
+                            >About</a
+                        >
+                        <a
+                            href="{{ url_for('main_bp.contact') }}"
+                            class="nav-link"
+                            >Contact</a
+                        >
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-bar">
+                        <div class="search-inputs">
+                            <input type="text" id="keyword-input" class="search-input" placeholder="Job title or keyword...">
+                            <input type="text" id="location-input" class="search-input" placeholder="Location...">
+                            <button id="search-button" class="btn">Search Jobs</button>
+                        </div>
+                        <div class="filter-section">
+                            <select id="job-type-filter" class="search-input">
+                                <option value="">All Job Types</option>
+                                <option>Full-time</option>
+                                <option>Part-time</option>
+                                <option>Contract</option>
+                                <option>Remote</option>
+                            </select>
+                            <select id="experience-filter" class="search-input">
+                                <option value="">All Experience Levels</option>
+                                <option>Entry Level</option>
+                                <option>Mid Level</option>
+                                <option>Senior Level</option>
+                            </select>
+                            <select id="salary-filter" class="search-input">
+                                <option value="">All Salary Ranges</option>
+                                <option>Ksh.0 - 50k</option>
+                                <option>Ksh.50k - 100k</option>
+                                <option>Ksh.100k - 150k</option>
+                                <option>Ksh.150k+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+                <section class="jobs-section">
+                    <div class="container">
+                        <div class="loading" id="loading">
+                            <i class="fas fa-spinner fa-spin"></i> Loading jobs...
+                        </div>
+
+                        <div id="job-grid" class="job-grid">
+                            {% for job in jobs %}
+                            <div class="job-card">
+                                <h3 class="job-title">{{ job.title }}</h3>
+                                <div class="company-info">
+                                    <div class="company-logo">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <span class="company-name">{{ job.company }}</span>
+                                </div>
+
+                                <div class="job-meta">
+                                    <div class="job-meta-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>{{ job.location }}</span>
+                                    </div>
+                                    <div class="job-meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>{{ job.type }}</span>
+                                    </div>
+                                    <div class="job-meta-item">
+                                        <i class="fas fa-wallet"></i>
+                                        <span>{{ job.salaryRange or 'Negotiable' }}</span>
+                                    </div>
+                                    <div class="job-meta-item">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>{{ job.experience }}</span>
+                                    </div>
+                                </div>
+
+                                <p class="job-description">{{ job.description }}</p>
+
+                                <div class="job-actions">
+                                    <a href="{{ url_for('job_bp.get_job', job_id=job._id) }}" class="btn">
+                                        View Details <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <nav class="pagination" id="pagination">
+                            {% if page > 1 %}
+                            <button class="page-btn" onclick="loadPage({{ page - 1 }})">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            {% endif %}
+
+                            {% for p in range(1, pages + 1) %}
+                            <button class="page-btn {% if p == page %}active{% endif %}" onclick="loadPage({{ p }})">
+                                {{ p }}
+                            </button>
+                            {% endfor %}
+
+                            {% if page < pages %}
+                            <button class="page-btn" onclick="loadPage({{ page + 1 }})">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </section>
+            </main>
+</div>
+            <footer>
+                <div class="footer-content container">
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a
+                            href="https://x.com/gogo1_onyango"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a
+                            href="https://linkedin.com/in/maxwell-gogo-2015a0231/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a
+                            href="https://instagram.com/gogo.maxwell22"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; <span id="copyright-year"></span> QuestPro. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+<script>
+    const searchParams = {
+        keyword: '',
+        location: '',
+        jobType: '',
+        experience: '',
+        salary: '',
+        page: 1
+    };
+
+    function updateSearchParams() {
+        searchParams.keyword = document.getElementById('keyword-input').value;
+        searchParams.location = document.getElementById('location-input').value;
+        searchParams.jobType = document.getElementById('job-type-filter').value;
+        searchParams.experience = document.getElementById('experience-filter').value;
+        searchParams.salary = document.getElementById('salary-filter').value;
+    }
+
+    async function fetchJobs() {
+        const loading = document.getElementById('loading');
+        const jobGrid = document.getElementById('job-grid');
+        const pagination = document.getElementById('pagination');
+
+        loading.classList.add('active');
+        jobGrid.style.opacity = '0.5';
+
+        try {
+            const params = new URLSearchParams({
+                ...searchParams,
+                page: searchParams.page
+            });
+
+            const response = await fetch(`/jobs/explore?${params.toString()}`);
+            const data = await response.text();
+
+            // Update the job grid and pagination
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            jobGrid.innerHTML = doc.getElementById('job-grid').innerHTML;
+            pagination.innerHTML = doc.getElementById('pagination').innerHTML;
+
+        } catch (error) {
+            console.error('Error fetching jobs:', error);
+        } finally {
+            loading.classList.remove('active');
+            jobGrid.style.opacity = '1';
+        }
+    }
+
+    function loadPage(newPage) {
+        searchParams.page = newPage;
+        fetchJobs();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Event Listeners
+    document.getElementById('search-button').addEventListener('click', () => {
+        searchParams.page = 1;
+        updateSearchParams();
+        fetchJobs();
+    });
+
+    document.querySelectorAll('.filter-section select').forEach(select => {
+        select.addEventListener('change', () => {
+            searchParams.page = 1;
+            updateSearchParams();
+            fetchJobs();
+        });
+    });
+
+    // Debounce search input
+    let timeout;
+    document.getElementById('keyword-input').addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            searchParams.page = 1;
+            updateSearchParams();
+            fetchJobs();
+        }, 500);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector(".mobile-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    const menuIcon = mobileToggle.querySelector("i");
+
+    mobileToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+
+        // Toggle menu icon
+        if (menuIcon.classList.contains("fa-bars")) {
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-times");
+            mobileToggle.setAttribute("aria-expanded", "true");
+        } else {
+            menuIcon.classList.remove("fa-times");
+            menuIcon.classList.add("fa-bars");
+            mobileToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+            if (
+                !e.target.closest(".nav") &&
+                navMenu.classList.contains("active")
+            ) {
+                navMenu.classList.remove("active");
+                menuIcon.classList.remove("fa-times");
+                menuIcon.classList.add("fa-bars");
+                mobileToggle.setAttribute("aria-expanded", "false");
+            }
+        }
+    });
+
+    // Update copyright year
+    document.getElementById("copyright-year").textContent =
+        new Date().getFullYear();
+</script>
+</body>
+</html>
+

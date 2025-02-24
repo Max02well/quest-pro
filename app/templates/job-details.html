@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ job.title }} at {{ job.company }} - QuestPro</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            rel="stylesheet"
+        />
+        <script
+            src="https://kit.fontawesome.com/a076d05399.js"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            :root {
+                --primary-color: #164773;
+                --primary-light: #1e5c94;
+                --primary-dark: #0d2b47;
+                --secondary-color: #4b4952;
+                --accent-color: #2ecc71;
+                --text-light: #ffffff;
+                --text-dark: #333333;
+                --spacing-base: 1rem;
+                --transition: all 0.3s ease;
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.6;
+                background-color: #f8f9fa;
+                color: var(--text-dark);
+                padding-top: 45px;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+
+            /* Header */
+            .header {
+                position: fixed;
+                width: 100%;
+                top: 0;
+                background-color: var(--primary-color);
+                box-shadow: var(--shadow-sm);
+                z-index: 1000;
+            }
+
+            .nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+            }
+
+            .nav-brand {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-light);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .nav-brand i {
+                color: var(--accent-color);
+            }
+
+            .nav-menu {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+            }
+
+            .nav-link:hover {
+                color: var(--accent-color);
+            }
+
+            /* Job Header */
+            .job-header {
+                background: linear-gradient(
+                    135deg,
+                    var(--primary-color),
+                    var(--primary-dark)
+                );
+                padding: 2.5rem 0;
+                color: var(--text-light);
+                margin-bottom: 2rem;
+            }
+
+            .job-header-content {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .company-logo {
+                width: 100px;
+                height: 100px;
+                background: white;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.5rem;
+                color: var(--primary-color);
+            }
+
+            .job-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .company-name {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                margin-bottom: 1rem;
+            }
+
+            .job-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .meta-item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Main Content */
+            .job-content {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+                margin: 1rem 0;
+            }
+
+            .content-card {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+            }
+
+            .section-title {
+                color: var(--primary-color);
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #f0f0f0;
+            }
+
+            /* Form Styles */
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--secondary-color);
+                font-weight: 500;
+            }
+
+            .form-input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: var(--transition);
+            }
+
+            .form-input:focus {
+                outline: none;
+                border-color: var(--accent-color);
+                box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                background-color: var(--accent-color);
+                color: var(--text-light);
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: var(--transition);
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            .btn:hover {
+                background-color: #27ae60;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-md);
+            }
+            .flash-message {
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 5px;
+                text-align: center;
+                font-weight: bold;
+            }
+            .flash-message.success {
+                background-color: #4caf50;
+                color: white;
+            }
+            .flash-message.error {
+                background-color: #f44336;
+                color: white;
+            }
+            .success-message {
+                display: none;
+                background-color: var(--accent-color);
+                color: white;
+                padding: 1rem;
+                border-radius: 8px;
+                margin-top: 1rem;
+                text-align: center;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: var(--primary-dark);
+                color: var(--text-light);
+                padding: 4rem 0;
+                margin-top: 4rem;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+
+            .footer-links {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .footer-links a {
+                color: var(--text-light);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-color);
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .social-links a {
+                color: var(--text-light);
+                font-size: 1.5rem;
+                transition: var(--transition);
+            }
+
+            .social-links a:hover {
+                color: var(--accent-color);
+                transform: translateY(-2px);
+            }
+            .mobile-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-light);
+            }
+            .back-btn {
+                display: inline-flex;
+                align-items: center;
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                margin-bottom: 0.2rem;
+                transition: var(--transition);
+            }
+
+            .back-btn i {
+                margin-right: 0.5rem;
+            }
+
+            .back-btn:hover {
+                color: var(--accent-color);
+            }
+
+            .job-header-content {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            @media (max-width: 768px) {
+                .job-content {
+                    grid-template-columns: 1fr;
+                }
+
+                .job-header-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .job-meta {
+                    justify-content: center;
+                }
+
+                .nav-menu {
+                    display: none;
+                }
+
+                .nav-menu.active {
+                    display: flex;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: var(--primary-color);
+                    flex-direction: column;
+                    padding: 1rem;
+                }
+
+                .mobile-toggle {
+                    display: block;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="/" class="nav-brand">
+                        <i class="fas fa-cube"></i> QuestPro
+                    </a>
+                    <button class="mobile-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-menu">
+                        <a href="{{ url_for('main_bp.home') }}" class="nav-link"
+                            >Home</a
+                        >
+                        <a
+                            href="{{ url_for('job_bp.explore') }}"
+                            class="nav-link"
+                            >Explore</a
+                        >
+                        <a
+                            href="{{ url_for('main_bp.about') }}"
+                            class="nav-link"
+                            >About</a
+                        >
+                        <a
+                            href="{{ url_for('main_bp.contact') }}"
+                            class="nav-link"
+                            >Contact</a
+                        >
+                    </div>
+                </nav>
+            </div>
+        </header>
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div id="flash-messages">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+        <section class="job-header">
+            <div class="container">
+                <a href="javascript:history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Jobs
+                </a>
+
+                <div class="job-header-content">
+                    <div class="company-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <h1 class="job-title">{{ job.title }}</h1>
+                        <div class="company-name">{{ job.company }}</div>
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ job.location }}
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                {{ job.type }}
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-layer-group"></i>
+                                {{ job.experience }}
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-wallet"></i>
+                                {{ job.salaryRange }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main>
+            <div class="container">
+                <div class="job-content">
+                    <div class="content-card">
+                        <section>
+                            <h2 class="section-title">Job Description</h2>
+                            <p>{{ job.description }}</p>
+                        </section>
+
+                        {% if job.requirements %}
+                        <section>
+                            <h2 class="section-title">Requirements</h2>
+                            <ul class="description-list">
+                                {% for requirement in job.requirements %}
+                                <li>{{ requirement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                        {% endif %} {% if job.benefits %}
+                        <section>
+                            <h2 class="section-title">Benefits</h2>
+                            <ul class="description-list">
+                                {% for benefit in job.benefits %}
+                                <li>{{ benefit }}</li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                        {% endif %}
+                    </div>
+
+                    <div class="content-card">
+                        <h2 class="section-title">Apply Now</h2>
+                        <form
+                            id="job-application-form"
+                            method="POST"
+                            action="{{ url_for('job_bp.apply') }}"
+                            enctype="multipart/form-data"
+                        >
+                            <!-- Hidden Job ID Field -->
+                            <input
+                                type="hidden"
+                                name="job_id"
+                                value="{{ job._id }}"
+                            />
+
+                            <div class="form-group">
+                                <label class="form-label" for="full-name"
+                                    >Full Name</label
+                                >
+                                <input
+                                    type="text"
+                                    id="full-name"
+                                    name="full_name"
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="email"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="phone"
+                                    >Phone</label
+                                >
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="resume"
+                                    >Resume/CV</label
+                                >
+                                <input
+                                    type="file"
+                                    id="resume"
+                                    name="resume"
+                                    class="form-input"
+                                    accept=".pdf,.doc,.docx"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="cover-letter"
+                                    >Cover Letter</label
+                                >
+                                <textarea
+                                    id="cover-letter"
+                                    name="cover_letter"
+                                    class="form-input"
+                                    rows="5"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content container">
+                <ul class="footer-links">
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+                <div class="social-links">
+                    <a
+                        href="https://x.com/gogo1_onyango"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a
+                        href="https://linkedin.com/in/maxwell-gogo-2015a0231/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a
+                        href="https://instagram.com/gogo.maxwell22"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; <span id="copyright-year"></span> QuestPro. All
+                        rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector(".mobile-toggle");
+            const navMenu = document.querySelector(".nav-menu");
+            const menuIcon = mobileToggle.querySelector("i");
+
+            mobileToggle.addEventListener("click", () => {
+                navMenu.classList.toggle("active");
+
+                // Toggle menu icon
+                if (menuIcon.classList.contains("fa-bars")) {
+                    menuIcon.classList.remove("fa-bars");
+                    menuIcon.classList.add("fa-times");
+                    mobileToggle.setAttribute("aria-expanded", "true");
+                } else {
+                    menuIcon.classList.remove("fa-times");
+                    menuIcon.classList.add("fa-bars");
+                    mobileToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    if (
+                        !e.target.closest(".nav") &&
+                        navMenu.classList.contains("active")
+                    ) {
+                        navMenu.classList.remove("active");
+                        menuIcon.classList.remove("fa-times");
+                        menuIcon.classList.add("fa-bars");
+                        mobileToggle.setAttribute("aria-expanded", "false");
+                    }
+                }
+            });
+
+            // Update copyright year
+            document.getElementById("copyright-year").textContent =
+                new Date().getFullYear();
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const applicationForm = document.getElementById("job-application-form");
+                        const successMessage = document.getElementById("success-message");
+                        const submitButton = applicationForm.querySelector("button[type='submit']");
+
+                        applicationForm.addEventListener("submit", async (e) => {
+                            e.preventDefault();
+
+                            const formData = new FormData(applicationForm); // Automatically handles files
+
+                            // Disable button to prevent multiple submissions
+                            submitButton.disabled = true;
+                            submitButton.textContent = "Submitting...";
+
+                                try {
+                                const response = await fetch("/jobs/apply", {
+                                    method: "POST",
+                                    body: formData,
+                                });
+
+                                const result = await response.json();
+
+                                if (response.ok) {
+                                    successMessage.style.display = "block";
+                                    successMessage.textContent = "Application submitted successfully!";
+                                    applicationForm.reset();
+
+                                    // Hide success message after 5 seconds
+                                    setTimeout(() => {
+                                        successMessage.style.display = "none";
+                                    }, 5000);
+                                } else {
+                                    alert(result.error || "Failed to submit application.");
+                                }
+                            } catch (error) {
+                                console.error("❌ Error:", error);
+                                alert("An error occurred while submitting the application.");
+                            } finally {
+                                // Re-enable the submit button
+                                submitButton.disabled = false;
+                                submitButton.textContent = "Submit Application";
+                            }
+                        });
+                    });
+
+
+            });
+
+
+            function goBack() {
+                if (document.referrer) {
+                    window.location.href = document.referrer;
+                } else {
+                    window.location.href = "{{ url_for('job_bp.explore') }}";
+                }
+            }
+        </script>
+    </body>
+</html>

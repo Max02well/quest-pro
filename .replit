@@ -1,11 +1,15 @@
-run = "python app.py"
+run = "python run.py"
 modules = ["nodejs-20", "python-3.11"]
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "python app.py"]
+run = ["sh", "-c", "python run.py"]
 
 [[ports]]
-localPort = 5000
+localPort = 5001
 externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3000
